@@ -4,18 +4,33 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>GoToGo Travel Solutions</title>
-    <meta name="description" content="Offering seamless travel and stay solutions | Local Rides, Intercity Shuttle, Airport Drops and Hotel & Venue Booking" />
+    <meta
+      name="description"
+      content="Offering seamless travel and stay solutions | Local Rides, Intercity Shuttle, Airport Drops and Hotel & Venue Booking"
+    />
     <meta property="og:title" content="GoToGo Travel Solution" />
-<meta property="og:description" content="Offering seamless travel and stay solutions | Local Rides, Intercity Shuttle, Airport Drops and Hotel & Venue Booking" />
-<meta property="og:image" content="https://www.gotogotravelsolutions.com/assets/gotogo%20final%20logos/g2g%20corporate.png" />
-<meta property="og:url" content="https://gotogotravelsolutions.com" />
-<meta property="og:type" content="website" />
+    <meta
+      property="og:description"
+      content="Offering seamless travel and stay solutions | Local Rides, Intercity Shuttle, Airport Drops and Hotel & Venue Booking"
+    />
+    <meta
+      property="og:image"
+      content="https://www.gotogotravelsolutions.com/assets/gotogo%20final%20logos/g2g%20corporate.png"
+    />
+    <meta property="og:url" content="https://gotogotravelsolutions.com" />
+    <meta property="og:type" content="website" />
 
-<!-- Twitter Meta Tags -->
-<meta name="twitter:title" content="GoToGo Travel Solution" />
-<meta name="twitter:description" content="Offering seamless travel and stay solutions | Local Rides, Intercity Shuttle, Airport Drops and Hotel & Venue Booking" />
-<meta name="twitter:image" content="https://www.gotogotravelsolutions.com/assets/gotogo%20final%20logos/g2g%20corporate.png" />
-<meta name="twitter:card" content="summary_large_image" />
+    <!-- Twitter Meta Tags -->
+    <meta name="twitter:title" content="GoToGo Travel Solution" />
+    <meta
+      name="twitter:description"
+      content="Offering seamless travel and stay solutions | Local Rides, Intercity Shuttle, Airport Drops and Hotel & Venue Booking"
+    />
+    <meta
+      name="twitter:image"
+      content="https://www.gotogotravelsolutions.com/assets/gotogo%20final%20logos/g2g%20corporate.png"
+    />
+    <meta name="twitter:card" content="summary_large_image" />
     <link
       rel="icon"
       href="./assets/gotogo final logos/g2g corporate.png"
@@ -81,6 +96,11 @@
           flex-direction: column-reverse !important;
         }
       }
+      /* #greeting{
+            color: black !important;
+            font-weight: bold;
+            font-size: 28px;
+        } */
     </style>
 
     <!-- Navbar -->
@@ -193,6 +213,7 @@
         autoplay
         muted
         playsinline
+        poster="./assets/poster.png"
         style="
           position: absolute;
           top: 0;
@@ -231,7 +252,7 @@
       >
         <h1
           class="text-[30px] md:text-[60px]"
-          style="line-height: 1.2; margin-bottom: 20px"
+          style="line-height: 1.2; margin-bottom: 10px"
         >
           <span style="display: inline-block; animation: fadeInUp 1s ease-out"
             >YOUR JOURNEY</span
@@ -245,13 +266,26 @@
             >OUR PRIORITY</span
           >
         </h1>
-        <p
-          style="margin-bottom: 35px; animation: fadeInUp 1.8s ease-out"
+        <!-- <p
+          style=" animation: fadeInUp 1.8s ease-out"
           class="text-sm sm:text-xs md:text-base lg:text-lg"
         >
           Experience Quality at an
           <span style="color: #f4be30">Affordable Price!</span>
-        </p>
+        </p> -->
+
+        <div
+          id="greeting"
+          style="
+            font-size: 2rem;
+            color: #ffff;
+            text-align: center;
+            
+          "
+        >
+          <!-- Greeting will be inserted here -->
+        </div>
+        <p style="font-size: 30px; margin-bottom: 20px;">Welcome to <span style="color: #f4be30;">GoToGo Travel Solutions!</span></p>
 
         <a href="#start" style="text-decoration: none">
           <button
@@ -269,6 +303,7 @@
             Let's Start
           </button>
         </a>
+        
       </div>
 
       <!-- Animations -->
@@ -727,51 +762,139 @@
 
         <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
           <!-- 9 regular cards -->
-          <div class=" p-6 rounded-xl  text-center flex items-center justify-center flex-col">
-            <div class="text-4xl mb-3"><img width="50px" class="rounded-[10px]" src="./assets/CorpWeb Icons - 2/CorpWeb Icons - 2/Seamless Corporate Travel.png" alt=""></div>
+          <div
+            class="p-6 rounded-xl text-center flex items-center justify-center flex-col"
+          >
+            <div class="text-4xl mb-3">
+              <img
+                width="50px"
+                class="rounded-[10px]"
+                src="./assets/CorpWeb Icons - 2/CorpWeb Icons - 2/Seamless Corporate Travel.png"
+                alt=""
+              />
+            </div>
             <h2 class="font-semibold text-lg">Seamless Corporate Travel</h2>
           </div>
-          <div class=" p-6 rounded-xl  text-center  flex items-center justify-center flex-col">
-            <div class="text-4xl mb-3"><img width="50px" class="rounded-[10px]" src="./assets/CorpWeb Icons - 2/CorpWeb Icons - 2/On Demand Scheduled Rides.png" alt=""></div>
+          <div
+            class="p-6 rounded-xl text-center flex items-center justify-center flex-col"
+          >
+            <div class="text-4xl mb-3">
+              <img
+                width="50px"
+                class="rounded-[10px]"
+                src="./assets/CorpWeb Icons - 2/CorpWeb Icons - 2/On Demand Scheduled Rides.png"
+                alt=""
+              />
+            </div>
             <h2 class="font-semibold text-lg">On-Demand & Scheduled Rides</h2>
           </div>
-          <div class=" p-6 rounded-xl  text-center  flex items-center justify-center flex-col">
-            <div class="text-4xl mb-3"><img width="50px" class="rounded-[10px]" src="./assets/CorpWeb Icons - 2/CorpWeb Icons - 2/Dedicated Fleet Chauffeurs.png" alt=""></div>
+          <div
+            class="p-6 rounded-xl text-center flex items-center justify-center flex-col"
+          >
+            <div class="text-4xl mb-3">
+              <img
+                width="50px"
+                class="rounded-[10px]"
+                src="./assets/CorpWeb Icons - 2/CorpWeb Icons - 2/Dedicated Fleet Chauffeurs.png"
+                alt=""
+              />
+            </div>
             <h2 class="font-semibold text-lg">Dedicated Fleet & Chauffeurs</h2>
           </div>
-          <div class=" p-6 rounded-xl  text-center flex items-center justify-center flex-col">
-            <div class="text-4xl mb-3"><img width="50px" class="rounded-[10px]" src="./assets/CorpWeb Icons - 2/CorpWeb Icons - 2/Custom Corporate Packages.png" alt=""></div>
+          <div
+            class="p-6 rounded-xl text-center flex items-center justify-center flex-col"
+          >
+            <div class="text-4xl mb-3">
+              <img
+                width="50px"
+                class="rounded-[10px]"
+                src="./assets/CorpWeb Icons - 2/CorpWeb Icons - 2/Custom Corporate Packages.png"
+                alt=""
+              />
+            </div>
             <h2 class="font-semibold text-lg">Custom Corporate Packages</h2>
           </div>
-          <div class=" p-6 rounded-xl  text-center flex items-center justify-center flex-col">
-            <div class="text-4xl mb-3"><img width="50px" class="rounded-[10px]" src="./assets/CorpWeb Icons - 2/CorpWeb Icons - 2/Flexible Billing Options.png" alt=""></div>
+          <div
+            class="p-6 rounded-xl text-center flex items-center justify-center flex-col"
+          >
+            <div class="text-4xl mb-3">
+              <img
+                width="50px"
+                class="rounded-[10px]"
+                src="./assets/CorpWeb Icons - 2/CorpWeb Icons - 2/Flexible Billing Options.png"
+                alt=""
+              />
+            </div>
             <h2 class="font-semibold text-lg">Flexible Billing Options</h2>
           </div>
-          <div class=" p-6 rounded-xl  text-center flex items-center justify-center flex-col">
-            <div class="text-4xl mb-3"><img width="50px" class="rounded-[10px]" src="./assets/CorpWeb Icons - 2/CorpWeb Icons - 2/Real Time Tracking Reporting.png" alt=""></div>
+          <div
+            class="p-6 rounded-xl text-center flex items-center justify-center flex-col"
+          >
+            <div class="text-4xl mb-3">
+              <img
+                width="50px"
+                class="rounded-[10px]"
+                src="./assets/CorpWeb Icons - 2/CorpWeb Icons - 2/Real Time Tracking Reporting.png"
+                alt=""
+              />
+            </div>
             <h2 class="font-semibold text-lg">
               Real-Time Tracking & Reporting
             </h2>
           </div>
-          <div class=" p-6 rounded-xl  text-center flex items-center justify-center flex-col">
-            <div class="text-4xl mb-3"><img width="50px" class="rounded-[10px]" src="./assets/CorpWeb Icons - 2/CorpWeb Icons - 2/Multi City Coverage.png" alt=""></div>
+          <div
+            class="p-6 rounded-xl text-center flex items-center justify-center flex-col"
+          >
+            <div class="text-4xl mb-3">
+              <img
+                width="50px"
+                class="rounded-[10px]"
+                src="./assets/CorpWeb Icons - 2/CorpWeb Icons - 2/Multi City Coverage.png"
+                alt=""
+              />
+            </div>
             <h2 class="font-semibold text-lg">Multi-City Coverage</h2>
           </div>
-          <div class=" p-6 rounded-xl  text-center flex items-center justify-center flex-col">
-            <div class="text-4xl mb-3"><img width="50px" class="rounded-[10px]" src="./assets/CorpWeb Icons - 2/CorpWeb Icons - 2/Safety Compliance First.png" alt=""></div>
+          <div
+            class="p-6 rounded-xl text-center flex items-center justify-center flex-col"
+          >
+            <div class="text-4xl mb-3">
+              <img
+                width="50px"
+                class="rounded-[10px]"
+                src="./assets/CorpWeb Icons - 2/CorpWeb Icons - 2/Safety Compliance First.png"
+                alt=""
+              />
+            </div>
             <h2 class="font-semibold text-lg">Safety & Compliance First</h2>
           </div>
-          <div class=" p-6 rounded-xl  text-center flex items-center justify-center flex-col">
-            <div class="text-4xl mb-3"><img width="50px" class="rounded-[10px]" src="./assets/CorpWeb Icons - 2/CorpWeb Icons - 2/Priority Support.png" alt=""></div>
+          <div
+            class="p-6 rounded-xl text-center flex items-center justify-center flex-col"
+          >
+            <div class="text-4xl mb-3">
+              <img
+                width="50px"
+                class="rounded-[10px]"
+                src="./assets/CorpWeb Icons - 2/CorpWeb Icons - 2/Priority Support.png"
+                alt=""
+              />
+            </div>
             <h2 class="font-semibold text-lg">Priority Support</h2>
           </div>
 
           <!-- Last item centered on large screens -->
 
           <div
-            class=" p-6 rounded-xl  text-center lg:col-start-2 flex items-center justify-center flex-col"
+            class="p-6 rounded-xl text-center lg:col-start-2 flex items-center justify-center flex-col"
           >
-            <div class="text-4xl mb-3"><img width="50px" class="rounded-[10px]" src="./assets/CorpWeb Icons - 2/CorpWeb Icons - 2/Transparent Pricing.png" alt=""></div>
+            <div class="text-4xl mb-3">
+              <img
+                width="50px"
+                class="rounded-[10px]"
+                src="./assets/CorpWeb Icons - 2/CorpWeb Icons - 2/Transparent Pricing.png"
+                alt=""
+              />
+            </div>
             <h2 class="font-semibold text-lg">Transparent Pricing</h2>
           </div>
         </div>
@@ -784,7 +907,7 @@
       class="text-gray-800 body-font bg-gradient-to-b from-white to-gray-50"
       id="features"
     >
-      <div class="container px-5  mx-auto">
+      <div class="container px-5 mx-auto">
         <!-- Heading -->
         <div class="text-center mb-16">
           <h1
@@ -801,121 +924,140 @@
 
         <!-- Top Image -->
         <div class="flex justify-center mb-8 w-full">
-  <img
-    src="/assets/GoToGo Web Banner 1200x500 px.png"
-    alt="GoToGo Travel & Hospitality"
-    class="w-full rounded-xl shadow-md"
-  />
-</div>
-
-
+          <img
+            src="/assets/GoToGo Web Banner 1200x500 px.png"
+            alt="GoToGo Travel & Hospitality"
+            class="w-full rounded-xl shadow-md"
+          />
+        </div>
 
         <!-- Features -->
-<div
-  class="w-full flex flex-col space-y-10 px-4 py-16 bg-cover bg-center items-center"
-  style="background-image: url('./assets/bg-solution-c.jpg');"
->
-    
-  <!-- Feature Block -->
-  <div class="flex flex-col sm:flex-row items-center gap-4 w-full " style="max-width: 40rem;">
-    <img
-      src="./assets/G2G Corporate Website - Icons/G2G Corporate Website - Icons/Integrated Travel Hospitality Services.png"
-      alt="Travel Icon"
-      class="w-20 h-20 sm:w-24 sm:h-24 rounded-full object-contain  p-2"
-    />
-    <div class="text-center sm:text-left">
-      <h2 class="text-xl font-semibold  mb-1" style="color: #f4be30;">
-        Integrated Travel & Hospitality Services
-      </h2>
-      <p class="text-white text-base">
-        One brand, multiple solutions for rides, intercity travel, and accommodations.
-      </p>
-    </div>
-  </div>
+        <div
+          class="w-full flex flex-col space-y-10 px-4 py-16 bg-cover bg-center items-center"
+          style="background-image: url('./assets/bg-solution-c.jpg')"
+        >
+          <!-- Feature Block -->
+          <div
+            class="flex flex-col sm:flex-row items-center gap-4 w-full"
+            style="max-width: 40rem"
+          >
+            <img
+              src="./assets/G2G Corporate Website - Icons/G2G Corporate Website - Icons/Integrated Travel Hospitality Services.png"
+              alt="Travel Icon"
+              class="w-20 h-20 sm:w-24 sm:h-24 rounded-full object-contain p-2"
+            />
+            <div class="text-center sm:text-left">
+              <h2 class="text-xl font-semibold mb-1" style="color: #f4be30">
+                Integrated Travel & Hospitality Services
+              </h2>
+              <p class="text-white text-base">
+                One brand, multiple solutions for rides, intercity travel, and
+                accommodations.
+              </p>
+            </div>
+          </div>
 
-  <!-- Repeat for each block -->
-  <div class="flex flex-col sm:flex-row items-center gap-4 w-full " style="max-width: 40rem;">
-    <img
-      src="./assets/G2G Corporate Website - Icons/G2G Corporate Website - Icons/Seamless Digital Experience.png"
-      alt="Digital Experience"
-      class="w-20 h-20 sm:w-24 sm:h-24 rounded-full object-contain  p-2"
-    />
-    <div class="text-center sm:text-left">
-      <h2 class="text-xl font-semibold text-gray-900 mb-1" style="color: #f4be30;">
-        Seamless Digital Experience
-      </h2>
-      <p class="text-white text-base">
-        A unified website for easy booking, WhatsApp integration, and online payments.
-      </p>
-    </div>
-  </div>
+          <!-- Repeat for each block -->
+          <div
+            class="flex flex-col sm:flex-row items-center gap-4 w-full"
+            style="max-width: 40rem"
+          >
+            <img
+              src="./assets/G2G Corporate Website - Icons/G2G Corporate Website - Icons/Seamless Digital Experience.png"
+              alt="Digital Experience"
+              class="w-20 h-20 sm:w-24 sm:h-24 rounded-full object-contain p-2"
+            />
+            <div class="text-center sm:text-left">
+              <h2
+                class="text-xl font-semibold text-gray-900 mb-1"
+                style="color: #f4be30"
+              >
+                Seamless Digital Experience
+              </h2>
+              <p class="text-white text-base">
+                A unified website for easy booking, WhatsApp integration, and
+                online payments.
+              </p>
+            </div>
+          </div>
 
-  <div class="flex flex-col sm:flex-row items-center gap-4 w-full " style="max-width: 40rem;">
-    <img
-      src="./assets/G2G Corporate Website - Icons/G2G Corporate Website - Icons/B2B B2C Solutions.png"
-      alt="B2B B2C"
-      class="w-20 h-20 sm:w-24 sm:h-24 rounded-full object-contain  p-2"
-    />
-    <div class="text-center sm:text-left">
-      <h2 class="text-xl font-semibold text-gray-900 mb-1" style="color: #f4be30;">
-        B2B & B2C Solutions
-      </h2>
-      <p class="text-white text-base">
-        Tailored services for corporates, hotels, individuals, and event organizers.
-      </p>
-    </div>
-  </div>
+          <div
+            class="flex flex-col sm:flex-row items-center gap-4 w-full"
+            style="max-width: 40rem"
+          >
+            <img
+              src="./assets/G2G Corporate Website - Icons/G2G Corporate Website - Icons/B2B B2C Solutions.png"
+              alt="B2B B2C"
+              class="w-20 h-20 sm:w-24 sm:h-24 rounded-full object-contain p-2"
+            />
+            <div class="text-center sm:text-left">
+              <h2
+                class="text-xl font-semibold text-gray-900 mb-1"
+                style="color: #f4be30"
+              >
+                B2B & B2C Solutions
+              </h2>
+              <p class="text-white text-base">
+                Tailored services for corporates, hotels, individuals, and event
+                organizers.
+              </p>
+            </div>
+          </div>
 
-  <div class="flex flex-col sm:flex-row items-center gap-4 w-full " style="max-width: 40rem;">
-    <img
-      src="./assets/G2G Corporate Website - Icons/G2G Corporate Website - Icons/Trust Safety First.png"
-      alt="Trust and Safety"
-      class="w-20 h-20 sm:w-24 sm:h-24 rounded-full object-contain  p-2"
-    />
-    <div class="text-center sm:text-left">
-      <h2 class="text-xl font-semibold text-gray-900 mb-1" style="color: #f4be30;">
-        Trust & Safety First
-      </h2>
-      <p class="text-white text-base">
-        Professional service with a focus on security, comfort, and reliability.
-      </p>
-    </div>
-  </div>
+          <div
+            class="flex flex-col sm:flex-row items-center gap-4 w-full"
+            style="max-width: 40rem"
+          >
+            <img
+              src="./assets/G2G Corporate Website - Icons/G2G Corporate Website - Icons/Trust Safety First.png"
+              alt="Trust and Safety"
+              class="w-20 h-20 sm:w-24 sm:h-24 rounded-full object-contain p-2"
+            />
+            <div class="text-center sm:text-left">
+              <h2
+                class="text-xl font-semibold text-gray-900 mb-1"
+                style="color: #f4be30"
+              >
+                Trust & Safety First
+              </h2>
+              <p class="text-white text-base">
+                Professional service with a focus on security, comfort, and
+                reliability.
+              </p>
+            </div>
+          </div>
 
-  <div class="flex flex-col sm:flex-row items-center gap-4 w-full " style="max-width: 40rem;">
-    <img
-      src="./assets/G2G Corporate Website - Icons/G2G Corporate Website - Icons/Customer Support.png"
-      alt="Customer Support"
-      class="w-20 h-20 sm:w-24 sm:h-24 rounded-full object-contain p-2"
-    />
-    <div class="text-center sm:text-left">
-      <h2 class="text-xl font-semibold text-gray-900 mb-1" style="color: #f4be30;">
-        24×7 Customer Support
-      </h2>
-      <p class="text-white text-base">
-        Always available to assist with bookings and inquiries.
-      </p>
-    </div>
-  </div>
-</div>
-
-
-
-
+          <div
+            class="flex flex-col sm:flex-row items-center gap-4 w-full"
+            style="max-width: 40rem"
+          >
+            <img
+              src="./assets/G2G Corporate Website - Icons/G2G Corporate Website - Icons/Customer Support.png"
+              alt="Customer Support"
+              class="w-20 h-20 sm:w-24 sm:h-24 rounded-full object-contain p-2"
+            />
+            <div class="text-center sm:text-left">
+              <h2
+                class="text-xl font-semibold text-gray-900 mb-1"
+                style="color: #f4be30"
+              >
+                24×7 Customer Support
+              </h2>
+              <p class="text-white text-base">
+                Always available to assist with bookings and inquiries.
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
     <!-- founders section  -->
 
     <!-- footer  -->
-     <section id="contact">
-     </section>
+    <section id="contact"></section>
 
-    <footer
-      class="bg-black text-gray-300 body-font text-sm hidden lg:block"
-
-      
-    >
+    <footer class="bg-black text-gray-300 body-font text-sm hidden lg:block">
       <div class="container mx-auto px-6 py-6">
         <div
           class="flex flex-col lg:flex-row items-center justify-between gap-6"
@@ -942,7 +1084,9 @@
               alt="GoToGo Logo"
               width="80"
             /> -->
-            <h1 class="text-3xl" style="color: #f4be30;">GoToGo Travel Solutions</h1>
+            <h1 class="text-3xl" style="color: #f4be30">
+              GoToGo Travel Solutions
+            </h1>
             <p class="text-xs text-gray-400 mt-2">
               © 2025 All Rights Reserved by GoToGo Travel Solutions LLP
             </p>
@@ -1011,10 +1155,7 @@
       </div>
     </footer>
 
-    <footer
-      class="bg-black text-gray-300 body-font text-sm block lg:hidden"
-      
-    >
+    <footer class="bg-black text-gray-300 body-font text-sm block lg:hidden">
       <div class="container mx-auto px-6 py-6">
         <div class="flex flex-col items-center gap-6 text-center lg:text-left">
           <!-- Contact Info -->
@@ -1095,7 +1236,9 @@
               alt="GoToGo Logo"
               width="80"
             /> -->
-            <h1 class="text-3xl" style="color: #f4be30;">GoToGo Travel Solutions</h1>
+            <h1 class="text-3xl" style="color: #f4be30">
+              GoToGo Travel Solutions
+            </h1>
           </div>
 
           <!-- Copyright -->
@@ -1105,6 +1248,19 @@
         </div>
       </div>
     </footer>
+
+    <!-- greeting -->
+    <script>
+      function getGreeting() {
+        const hour = new Date().getHours();
+        if (hour < 12) return "Good Morning";
+        if (hour < 17) return `Good Afternoon`;
+        return "Good Evening";
+      }
+
+      // Insert greeting into the div
+      document.getElementById("greeting").textContent = getGreeting();
+    </script>
 
     <script>
       const videos = [
