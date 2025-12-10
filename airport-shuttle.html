@@ -62,6 +62,10 @@
       rel="stylesheet"
     />
 
+
+
+    
+
     <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
     <!-- Choices.js CSS -->
     <!-- <link
@@ -998,6 +1002,60 @@
     </div>
   </div>
 </footer>
+
+<div id="payment-help-popup" style="
+    display: none; 
+    position: fixed; 
+    top: 20px; 
+    left: 50%; 
+    transform: translateX(-50%); 
+    background: #fff; 
+    padding: 15px 20px; 
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3); 
+    border-radius: 8px; 
+    z-index: 2147483647 !important;
+    border-left: 5px solid #F37254;
+    font-family: Arial, sans-serif;
+    min-width: 300px;
+">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+        <div>
+            <h4 style="margin: 0 0 5px 0; color: #333;">Payment Tip 💡</h4>
+            <p style="margin: 0; font-size: 13px; color: #555;">
+                If the QR Code is not loading,<br> 
+                please try <b>UPI ID</b> or <b>Card</b> option.
+            </p>
+        </div>
+        <button onclick="closeHelpPopup()" style="
+            background: none; 
+            border: none; 
+            font-size: 20px; 
+            cursor: pointer; 
+            color: #999; 
+            margin-left: 10px;
+        ">&times;</button>
+    </div>
+</div>
+
+<script>
+    // Function to close the popup
+    function closeHelpPopup() {
+        document.getElementById('payment-help-popup').style.display = 'none';
+    }
+    setTimeout(function() {
+    
+    // Check karein ki Razorpay abhi bhi khula hai ya nahi
+    // (Agar user ne band kar diya to popup mat dikhao)
+    var razorpayFrame = document.querySelector('.razorpay-checkout-frame');
+    
+    if (razorpayFrame) {
+        document.getElementById('payment-help-popup').style.display = 'block';
+    }
+
+}, 3000); // 3000 matlab 3 seconds baad
+</script>
+
+
 <style>
   @media (max-width: 768px) {
   .footer-css{
@@ -1009,6 +1067,9 @@
     text-align: center !important;
   }}
 </style>
+
+
+<!-- pop up script  --> 
 
 
 
@@ -1062,6 +1123,8 @@
       }
 
       window.addEventListener("DOMContentLoaded", setDefaultPickupDate);
+
+      
     </script>
     <!-- The date input example: -->
     <!-- <input type="date" id="pickupDate" /> -->
@@ -1115,6 +1178,8 @@
         });
       });
     </script>
+
+    
 
     <script>
   // Wait for the entire page to be ready
@@ -1735,6 +1800,10 @@
             if (!orderData.id)
               return alert("❌ Order creation failed. Please try again.");
 
+              alert("Sending Phone: " + phones[0].replace(/\D/g, ''));
+// Server se jo order aaya usko print karo
+console.log("🔥 SERVER ORDER ID:", orderData.id);
+
             const razorpayOptions = {
               key: "rzp_live_GguLSrEps04lrr",  // change rzp_test_7m2jpATTXnOo2o  rzp_live_GguLSrEps04lrr
               amount: orderData.amount,
@@ -1742,7 +1811,7 @@
               order_id: orderData.id,
               name: "GoToGo Airport Shuttle Service",
               description: "Service Booking Payment",
-              image: './assets/gotogo final logos/g2g fleet.png',
+              // image: 'https://www.gotogotravelsolutions.com/assets/gotogo%20final%20logos/g2g%20corporate.png',
               handler: async function (response) {
 
                 const firstName = names[0] || "User";
@@ -1838,7 +1907,9 @@
               },
               prefill: {
                 name: names[0],
-                contact: phones[0],
+                // contact: phones[0],
+                contact: phones[0].replace(/\D/g, ''),
+                
               },
               theme: {
                     color: '#f4be30'
@@ -1855,6 +1926,7 @@
 
             const rzp = new Razorpay(razorpayOptions);
             rzp.open();
+            
           } catch (err) {
             const bookingFailed = {
               ...bookingData,
