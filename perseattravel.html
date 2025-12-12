@@ -336,6 +336,40 @@
   });
 });
 </script>
+
+<div id="storage-error-modal" class="fixed inset-0 bg-black/70 z-[9999] hidden flex items-center justify-center p-4 backdrop-blur-sm">
+    <div class="bg-white rounded-xl shadow-2xl max-w-md w-full p-6 relative border-t-4 border-red-500 animate-[bounce_0.3s_ease-in-out]">
+        
+        <div class="text-center">
+            <div class="mx-auto flex items-center justify-center h-14 w-14 rounded-full bg-red-100 mb-4">
+                <i class="fa-solid fa-triangle-exclamation text-red-600 text-2xl"></i>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900">Unable to Proceed</h3>
+            <p class="text-sm text-gray-500 mt-2">
+                Your browser is blocking access to local storage, which is required to save your booking details.
+            </p>
+        </div>
+
+        <div class="mt-6 bg-gray-50 rounded-lg p-4 text-left border border-gray-200">
+            <p class="font-semibold text-gray-800 mb-2 text-sm">Please try the following:</p>
+            <ul class="text-sm text-gray-600 space-y-2 list-disc pl-4">
+                <li>If you are using <strong>Incognito/Private Mode</strong>, please switch to a normal window.</li>
+                <li>Enable <strong>Cookies & Site Data</strong> in your browser settings.</li>
+            </ul>
+        </div>
+
+        <div class="mt-6 flex gap-3">
+            <button onclick="document.getElementById('storage-error-modal').classList.add('hidden')" 
+                class="flex-1 py-2.5 border border-gray-300 rounded-lg text-gray-700 font-medium hover:bg-gray-50 transition">
+                Close
+            </button>
+            <button onclick="window.location.reload()" 
+                class="flex-1 py-2.5 bg-[#f4be30] rounded-lg text-black font-bold hover:bg-[#dca92b] shadow-md transition">
+                Refresh Page
+            </button>
+        </div>
+    </div>
+</div>
     
 
 
@@ -437,74 +471,73 @@
 
                 <!-- Options Container - Hidden by default -->
                 <div id="options-container" class="hidden mt-6 space-y-4">
-                    <div class="option-box border rounded-lg p-4 cursor-pointer hover:border-[#f4be30] transition selected" onclick="selectOption(this)" data-price-per-adult="1.75">
-                      <!-- //175 -->
-                        <div class="flex justify-between items-center">
-                            <p class="font-semibold">Option 1 : Car + Guide + Entrance + Lunch</p>
-                            <p class="text-xl font-bold text-gray-800 price-display">$ 175</p>
-                        </div>
-                        <div class="option-details mt-2">
-                             <p class="text-sm text-gray-600">Includes: Car with Driver + Guide + Entrance fees + Lunch at 5 Star Hotel.
-Pickup included</p>
-                             <div class="flex justify-end items-center mt-4 space-x-4">
-                                 <p class="price-calculation text-sm text-gray-500 font-medium"></p>
-                                 <button 
-  class="book-now-btn bg-gray-600 text-white font-bold py-2 px-6 rounded-lg hover:bg-[#f4be30] hover:text-black transition-colors"
-  onclick="bookNow(this, event)"
->
-  BOOK NOW
-</button>
+    
+    <div class="option-box border rounded-lg p-4 cursor-pointer hover:border-[#f4be30] transition selected" onclick="selectOption(this)" data-price-per-adult="1.75">
+        <div class="flex justify-between items-center">
+            <p class="font-semibold">Option 1 : Car + Guide + Entrance + Lunch</p>
+            <p class="text-xl font-bold text-gray-800 price-display">$ 175</p>
+        </div>
+        <div class="option-details mt-2">
+            <p class="text-sm text-gray-600">Includes: Car with Driver + Guide + Entrance fees + Lunch at 5 Star Hotel. Pickup included</p>
+            <div class="flex justify-end items-center mt-4 space-x-4">
+                <p class="price-calculation text-sm text-gray-500 font-medium"></p>
+                <button class="book-now-btn bg-gray-600 text-white font-bold py-2 px-6 rounded-lg hover:bg-[#f4be30] hover:text-black transition-colors" onclick="bookNow(this, event)">
+                    BOOK NOW
+                </button>
+            </div>
+        </div>
+    </div>
 
-                             </div>
-                         </div>
-                    </div>
-                     <div class="option-box border rounded-lg p-4 cursor-pointer hover:border-[#f4be30] transition" onclick="selectOption(this)" data-price-per-adult="1.50">
-                      <!-- //150 -->
-                        <div class="flex justify-between items-center">
-                            <p class="font-semibold">Option 2 : Car + Guide + Entrance</p>
-                            <p class="text-xl font-bold text-gray-800 price-display">$ 150</p>
-                        </div>
-                        <div class="option-details hidden mt-2">
-                             <p class="text-sm text-gray-600">Includes: Car with Driver + Guide + Entrance fees. But Lunch is not included in this price.
-Pickup included</p>
-                             <div class="flex justify-end items-center mt-4 space-x-4">
-                                 <p class="price-calculation text-sm text-gray-500 font-medium"></p>
-                                 <button class="book-now-btn bg-gray-600 text-white font-bold py-2 px-6 rounded-lg hover:bg-[#f4be30] hover:text-black transition-colors">BOOK NOW</button>
-                             </div>
-                         </div>
-                    </div>
-                     <div class="option-box border rounded-lg p-4 cursor-pointer hover:border-[#f4be30] transition" onclick="selectOption(this)" data-price-per-adult="1.20">
-                      <!-- //120 -->
-                        <div class="flex justify-between items-center">
-                            <p class="font-semibold">Option 3 : Car + Guide</p>
-                            <p class="text-xl font-bold text-gray-800 price-display">$ 120</p>
-                        </div>
-                        <div class="option-details hidden mt-2">
-                             <p class="text-sm text-gray-600">Includes: Car with Driver + Guide. But entrance fees and breakfast are not included in this price.
-Pickup included</p>
-                             <div class="flex justify-end items-center mt-4 space-x-4">
-                                 <p class="price-calculation text-sm text-gray-500 font-medium"></p>
-                                 <button class="book-now-btn bg-gray-600 text-white font-bold py-2 px-6 rounded-lg hover:bg-[#f4be30] hover:text-black transition-colors">BOOK NOW</button>
-                             </div>
-                         </div>
-                    </div>
-                    <div class="option-box border rounded-lg p-4 cursor-pointer bg-white shadow-sm hover:border-[#f4be30]" onclick="selectOption(this)" data-price-per-adult="1.00">
-                      <!-- //100 -->
-                        <div class="flex justify-between items-start">
-                            <div>
-                               <p class="font-semibold">Option 4 : Car</p>
-                            </div>
-                            <p class="text-xl font-bold text-[#000] price-display">$ 100</p>
-                        </div>
-                         <div class="option-details hidden mt-2">
-                             <p class="text-sm text-gray-600">Includes: Car with Driver only. Guide, entrance fees and Lunch are not included in this price. Pickup included</p>
-                             <div class="flex justify-end items-center mt-4 space-x-4">
-                                 <p class="price-calculation text-sm text-gray-500 font-medium">2 Adult x $ 100</p>
-                                 <button class="book-now-btn bg-gray-600 text-white font-bold py-2 px-6 rounded-lg hover:bg-[#f4be30] hover:text-black transition-colors">BOOK NOW</button>
-                             </div>
-                         </div>
-                    </div>
-                </div>
+    <div class="option-box border rounded-lg p-4 cursor-pointer hover:border-[#f4be30] transition" onclick="selectOption(this)" data-price-per-adult="1.50">
+        <div class="flex justify-between items-center">
+            <p class="font-semibold">Option 2 : Car + Guide + Entrance</p>
+            <p class="text-xl font-bold text-gray-800 price-display">$ 150</p>
+        </div>
+        <div class="option-details hidden mt-2">
+            <p class="text-sm text-gray-600">Includes: Car with Driver + Guide + Entrance fees. But Lunch is not included in this price. Pickup included</p>
+            <div class="flex justify-end items-center mt-4 space-x-4">
+                <p class="price-calculation text-sm text-gray-500 font-medium"></p>
+                <button class="book-now-btn bg-gray-600 text-white font-bold py-2 px-6 rounded-lg hover:bg-[#f4be30] hover:text-black transition-colors" onclick="bookNow(this, event)">
+                    BOOK NOW
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="option-box border rounded-lg p-4 cursor-pointer hover:border-[#f4be30] transition" onclick="selectOption(this)" data-price-per-adult="1.20">
+        <div class="flex justify-between items-center">
+            <p class="font-semibold">Option 3 : Car + Guide</p>
+            <p class="text-xl font-bold text-gray-800 price-display">$ 120</p>
+        </div>
+        <div class="option-details hidden mt-2">
+            <p class="text-sm text-gray-600">Includes: Car with Driver + Guide. But entrance fees and breakfast are not included in this price. Pickup included</p>
+            <div class="flex justify-end items-center mt-4 space-x-4">
+                <p class="price-calculation text-sm text-gray-500 font-medium"></p>
+                <button class="book-now-btn bg-gray-600 text-white font-bold py-2 px-6 rounded-lg hover:bg-[#f4be30] hover:text-black transition-colors" onclick="bookNow(this, event)">
+                    BOOK NOW
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="option-box border rounded-lg p-4 cursor-pointer bg-white shadow-sm hover:border-[#f4be30]" onclick="selectOption(this)" data-price-per-adult="1.00">
+        <div class="flex justify-between items-start">
+            <div>
+                <p class="font-semibold">Option 4 : Car</p>
+            </div>
+            <p class="text-xl font-bold text-[#000] price-display">$ 100</p>
+        </div>
+        <div class="option-details hidden mt-2">
+            <p class="text-sm text-gray-600">Includes: Car with Driver only. Guide, entrance fees and Lunch are not included in this price. Pickup included</p>
+            <div class="flex justify-end items-center mt-4 space-x-4">
+                <p class="price-calculation text-sm text-gray-500 font-medium"></p>
+                <button class="book-now-btn bg-gray-600 text-white font-bold py-2 px-6 rounded-lg hover:bg-[#f4be30] hover:text-black transition-colors" onclick="bookNow(this, event)">
+                    BOOK NOW
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
 
             </div>
         </div>
@@ -823,8 +856,18 @@ Pickup included</p>
             totalSavings: totalSavings // Pass this to show on cart page
         };
         
+        // localStorage.setItem('travelCart', JSON.stringify(cartData));
+        // window.location.href = 'cart.html';
+        try {
+        localStorage.setItem('test_check', '1');
+        localStorage.removeItem('test_check');
         localStorage.setItem('travelCart', JSON.stringify(cartData));
         window.location.href = 'cart.html';
+    } catch (e) {
+        // Show the English Modal
+        console.error("Storage Error:", e);
+        document.getElementById('storage-error-modal').classList.remove('hidden');
+    }
     }
 
     document.addEventListener('DOMContentLoaded', () => {
