@@ -718,3 +718,6 @@ Pickup included</p>
 </body>
 </html>
 
+
+“If QR doesn’t load, please use UPI apps button (GPay / PhonePe / Paytm) or Netbanking/Card option.”
+

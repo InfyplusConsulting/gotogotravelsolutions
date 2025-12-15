@@ -757,6 +757,40 @@
           <div class="mt-4">
             <div style="display: flex; justify-content: space-between">
               <div>
+<p style="
+    display: none; /* <--- यह सबसे जरूरी सुधार है! */
+    border: 1px solid #007bff;
+    padding: 5px;
+    background-color: #e6f2ff;
+    border-radius: 6px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #1a1a1a;
+    font-size: 12px;
+" id="bookingNote">
+  <strong style="color: #007bff;">Note:</strong>
+  Not able to book for tomorrow, <br/>not to worry, please call
+  <a style="color: #28a745; font-size: 1.1em;" href="tel:+917065650650"><strong>+91 7065 650 650</strong></a>. <br/> Our team will assist you.
+</p>
+
+<script>
+  function checkTimeAndDisplayNote() {
+    const now = new Date();
+    const currentHour = now.getHours();
+
+    // Time check: 8 PM (20) se lekar 12 AM (24/0) tak
+    if (currentHour >= 20 && currentHour < 24) {
+      const noteElement = document.getElementById('bookingNote');
+      if (noteElement) {
+        // Agar time 8 PM aur 12 AM ke beech hai, toh dikhao
+        noteElement.style.display = 'block';
+      }
+    }
+  }
+
+  // Page load hote hi function chalao
+  window.onload = checkTimeAndDisplayNote;
+</script>
+
                 <label class="form-label">PICKUP DATE</label>
                 <input type="date" class="form-control" id="pickupDate" />
               </div>
@@ -1091,7 +1125,7 @@
         const now = new Date();
 
         // Check if current hour is >= 21 (i.e., 9 PM)
-        const isAfter9PM = now.getHours() >= 21;
+        const isAfter9PM = now.getHours() >= 20;
 
         // Default: tomorrow or day after tomorrow
         const defaultDate = new Date();
@@ -1572,30 +1606,37 @@
 
     // --- OTHER PAGE SCRIPTS (like your date logic, modals, etc.) ---
     // You can paste the rest of your page-specific functions here.
-    const pickupDateInput = document.getElementById("pickupDate");
+   const pickupDateInput = document.getElementById("pickupDate");
 
-      const now = new Date();
-      const ninePM = new Date();
-      ninePM.setHours(21, 0, 0, 0); // today at 9:00 PM
+// const now = new Date();
 
-      let minDate;
+// // ⏰ Cut-off (test ke liye 3 PM)
+// const ninePM = new Date();
+// ninePM.setHours(15, 0, 0, 0); // 3:00 PM
 
-      if (now < ninePM) {
-        // ✅ Before 9 PM → allow tomorrow
-        now.setDate(now.getDate() + 1);
-      } else {
-        // ⛔ After 9 PM → allow day after tomorrow
-        now.setDate(now.getDate() + 2);
-      }
+// const minBookingDate = new Date();
+// minBookingDate.setHours(0, 0, 0, 0);
 
-      // Format date to YYYY-MM-DD
-      const yyyy = now.getFullYear();
-      const mm = String(now.getMonth() + 1).padStart(2, "0");
-      const dd = String(now.getDate()).padStart(2, "0");
-      minDate = `${yyyy}-${mm}-${dd}`;
+// if (now < ninePM) {
+//   // before cutoff → tomorrow
+//   minBookingDate.setDate(minBookingDate.getDate() + 1);
+// } else {
+//   // after cutoff → day after tomorrow
+//   minBookingDate.setDate(minBookingDate.getDate() + 2);
+// }
 
-      pickupDateInput.setAttribute("min", minDate);
-  });
+// const yyyy = minBookingDate.getFullYear();
+// const mm = String(minBookingDate.getMonth() + 1).padStart(2, "0");
+// const dd = String(minBookingDate.getDate()).padStart(2, "0");
+
+// const minDate = `${yyyy}-${mm}-${dd}`;
+
+// // ✅ Restrict
+// pickupDateInput.setAttribute("min", minDate);
+
+// // ✅ Force default value also
+// pickupDateInput.value = minDate;
+  })
 
   function showToast(message = "Something happened!", duration = 4000) {
         const toast = document.getElementById("globalNotification");

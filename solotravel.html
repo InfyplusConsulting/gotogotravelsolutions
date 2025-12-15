@@ -336,6 +336,39 @@
 });
 </script>
     
+<div id="storage-error-modal" class="fixed inset-0 bg-black/70 z-[9999] hidden flex items-center justify-center p-4 backdrop-blur-sm">
+    <div class="bg-white rounded-xl shadow-2xl max-w-md w-full p-6 relative border-t-4 border-red-500 animate-[bounce_0.3s_ease-in-out]">
+        
+        <div class="text-center">
+            <div class="mx-auto flex items-center justify-center h-14 w-14 rounded-full bg-red-100 mb-4">
+                <i class="fa-solid fa-triangle-exclamation text-red-600 text-2xl"></i>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900">Unable to Proceed</h3>
+            <p class="text-sm text-gray-500 mt-2">
+                Your browser is blocking access to local storage, which is required to save your booking details.
+            </p>
+        </div>
+
+        <div class="mt-6 bg-gray-50 rounded-lg p-4 text-left border border-gray-200">
+            <p class="font-semibold text-gray-800 mb-2 text-sm">Please try the following:</p>
+            <ul class="text-sm text-gray-600 space-y-2 list-disc pl-4">
+                <li>If you are using <strong>Incognito/Private Mode</strong>, please switch to a normal window.</li>
+                <li>Enable <strong>Cookies & Site Data</strong> in your browser settings.</li>
+            </ul>
+        </div>
+
+        <div class="mt-6 flex gap-3">
+            <button onclick="document.getElementById('storage-error-modal').classList.add('hidden')" 
+                class="flex-1 py-2.5 border border-gray-300 rounded-lg text-gray-700 font-medium hover:bg-gray-50 transition">
+                Close
+            </button>
+            <button onclick="window.location.reload()" 
+                class="flex-1 py-2.5 bg-[#f4be30] rounded-lg text-black font-bold hover:bg-[#dca92b] shadow-md transition">
+                Refresh Page
+            </button>
+        </div>
+    </div>
+</div>
 
 
     <div class="container mx-auto max-w-6xl p-4 md:p-8">
@@ -752,8 +785,18 @@
             totalPrice: finalTotal
         };
         
+        // localStorage.setItem('travelCart', JSON.stringify(cartData));
+        // window.location.href = 'cart.html';
+        try {
+        localStorage.setItem('test_check', '1');
+        localStorage.removeItem('test_check');
         localStorage.setItem('travelCart', JSON.stringify(cartData));
         window.location.href = 'cart.html';
+    } catch (e) {
+        // Show the English Modal
+        console.error("Storage Error:", e);
+        document.getElementById('storage-error-modal').classList.remove('hidden');
+    }
     }
 
     // Initialize on Page Load
