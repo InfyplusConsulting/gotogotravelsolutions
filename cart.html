@@ -562,7 +562,7 @@
                 your experience throughout this website, and for other purposes
                 described in our
                 <a
-                  href="./docs/Privacy-Policy.html"
+                  href="/privacy-policy.html"
                   class="text-brand hover:underline"
                   >privacy policy</a
                 >.
@@ -1391,29 +1391,40 @@
         }
       }
 
-      function toggleOverlay() {
+function toggleOverlay() {
         const overlay = document.getElementById("celebrationOverlay");
         const isHidden = overlay.style.display === "none";
+        
         if (isHidden) {
           overlay.style.display = "flex";
           const contentDiv = overlay.querySelector(".celebrate-content");
+          
           if (!document.getElementById("overlay-download-btn")) {
             const btn = document.createElement("button");
             btn.id = "overlay-download-btn";
             btn.innerText = "Download Ticket Now 📄";
             btn.style.cssText = "margin-top: 20px; background-color: #f4be30; color: #000; font-weight: bold; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; font-size: 16px;";
+            
             btn.onclick = async function () {
-              await downloadPDF();
-              location.reload();
+              // 1. Pehle Ticket Download hogi
+              await downloadPDF(); 
+              
+              // 2. Phir 2 Second ka wait (2000 ms) aur fir Redirect
+              setTimeout(function() {
+                  window.location.href = "/shuttletoagra.html";
+              }, 2000);
             };
+            
             contentDiv.appendChild(btn);
           }
         } else {
           overlay.style.display = "none";
-          location.reload();
+          // Agar cross button dabaya to bhi 2 second wait karke bhej sakte hain, 
+          // ya turant bhej dein (yahan maine turant rakha hai safe side ke liye)
+          window.location.href = "/shuttletoagra.html";
         }
       }
-
+      
       // --- FILE SIZE VALIDATOR (Immediate Check) ---
 function validateFileSelection(input) {
     const file = input.files[0];
@@ -1774,7 +1785,6 @@ const processFile = (file) => new Promise((resolve, reject) => {
           const email = document.getElementById("email").value;
           const mobile = document.getElementById("mobile").value;
 
-          
 
           const options = {
             key: "rzp_live_GguLSrEps04lrr",
@@ -1794,16 +1804,36 @@ const processFile = (file) => new Promise((resolve, reject) => {
             },
             notes: { address: document.getElementById("hotel-address").value },
             theme: { color: "#f4be30" },
+            
+            // --- NAYA CODE: Yaha fix kiya gaya hai ---
+            modal: {
+                ondismiss: function() {
+                    // Jab user popup close karega, ye chalega
+                    document.getElementById("loadingOverlay").style.display = "none";
+                    const btn = document.getElementById("book-now-btn");
+                    btn.disabled = false;
+                    btn.textContent = "Book Now";
+                }
+            }
+            // ----------------------------------------
           };
+
           const rzp1 = new Razorpay(options);
+          
           rzp1.on("payment.failed", function (response) {
             alert("Payment failed: " + response.error.description);
+            // Agar payment fail ho jaye, to bhi overlay hatao
+            document.getElementById("loadingOverlay").style.display = "none";
+            
             bookNowBtn.disabled = false;
             bookNowBtn.textContent = "Book Now";
           });
+          
           rzp1.open();
         }
 
+        
+        
         async function verifyPayment(paymentResponse, ticketID, travelersData) {
            loadingOverlay.style.display = "flex";
            loadingOverlay.querySelector('p').textContent = "Confirming your booking...";
@@ -1949,8 +1979,9 @@ try {
 
                if (paymentMethod === "razorpay") {
                    loadingOverlay.querySelector('p').textContent = "Initiating Payment...";
-                   const totalInr = Math.round(cartData.totalPrice * INR_RATE);
-                   const totalInPaisa = totalInr * 100;
+                  //  const totalInr = Math.round(cartData.totalPrice * INR_RATE);
+                  //  const totalInPaisa = totalInr * 100;
+                  const totalInPaisa = Math.round(cartData.totalPrice * INR_RATE * 100);
                    const response = await fetch("https://paymentgatewayforshuttletoagra.onrender.com/create-order", {
                        method: "POST",
                        headers: { "Content-Type": "application/json" },
