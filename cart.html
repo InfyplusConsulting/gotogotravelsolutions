@@ -1695,14 +1695,19 @@ async function fetchAndDownloadTicket(ticketId) {
         const totalPax = (booking.cart.adults || 0) + (booking.cart.children || 0) + (booking.cart.infants || 0);
         setText("pdf-total-pax", totalPax);
 
-        // 4. Payment Info
-        const payStatus = booking.paymentMethod === "cash" ? "PAY ON ARRIVAL" : "PAID ONLINE";
-        const payColor = booking.paymentMethod === "cash" ? "text-orange-600" : "text-green-600";
+        // 4. Payment Info (FIXED LOGIC)
+        // हम toLowerCase() लगा रहे हैं ताकि 'Cash' और 'cash' दोनों काम करें
+        const pMethod = booking.paymentMethod ? booking.paymentMethod.toLowerCase() : "";
+        
+        const payStatus = pMethod === "cash" ? "PAY ON ARRIVAL" : "PAID ONLINE";
+        
+        // Cash के लिए Orange रंग, Online के लिए Green
+        const payColor = pMethod === "cash" ? "text-orange-600" : "text-green-600";
         
         const payElem = document.getElementById("pdf-payment-status");
         if(payElem) {
             payElem.innerText = payStatus;
-            // Class reset karke color change karein
+            // पुरानी क्लासेज हटाकर नई लगाएं
             payElem.className = `text-lg font-bold uppercase ${payColor}`;
         }
         
@@ -1755,6 +1760,7 @@ async function fetchAndDownloadTicket(ticketId) {
         if(btn) btn.innerText = originalText;
     }
 }
+
 
 // Helper function to safely set text
 function setText(id, text) {
