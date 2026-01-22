@@ -253,7 +253,7 @@
                     padding: 5px 8px;
                     font-weight: bold;
                     color: #004aad;
-                    font-size: 10px;
+                    font-size: 9px;
                   "
                   class="ticket-number"
                 >
@@ -780,16 +780,67 @@ document.addEventListener("DOMContentLoaded", async () => {
     let loaderRef = null;       // लोडर का रेफरेन्स
 
     // 1. PDF जनरेशन फंक्शन
-    async function generatePDF() {
-        const element = document.getElementById("ticket");
-        const canvas = await html2canvas(element, { scale: 3, useCORS: true, scrollY: 0 });
+    // async function generatePDF() {
+    //     const element = document.getElementById("ticket");
+    //     const canvas = await html2canvas(element, { scale: 3, useCORS: true, scrollY: 0 });
+    //     const imgData = canvas.toDataURL("image/jpeg", 1.0);
+    //     const { jsPDF } = window.jspdf;
+    //     const pdf = new jsPDF({ orientation: "portrait", unit: "px", format: [canvas.width, canvas.height] });
+    //     pdf.addImage(imgData, "JPEG", 0, 0, canvas.width, canvas.height);
+    //     pdf.save("GoToGo-Ticket.pdf");
+    // }
+    // 1. अपडेटेड PDF जनरेशन फ़ंक्शन
+async function generatePDF() {
+    const element = document.getElementById("ticket");
+    
+    // बटन को पकड़ें ताकि टेक्स्ट बदल सकें
+    const btn = document.querySelector(".download-btn");
+    const originalText = btn.innerText;
+
+    // A. "Processing..." स्थिति सेट करें
+    btn.innerText = "Processing...";
+    btn.disabled = true;
+    btn.style.opacity = "0.7";
+    btn.style.cursor = "not-allowed";
+
+    try {
+        // html2canvas के साथ इमेज कैप्चर करें
+        const canvas = await html2canvas(element, {
+            scale: 3, // हाई क्वालिटी के लिए
+            useCORS: true,
+            scrollY: 0,
+        });
+
         const imgData = canvas.toDataURL("image/jpeg", 1.0);
         const { jsPDF } = window.jspdf;
-        const pdf = new jsPDF({ orientation: "portrait", unit: "px", format: [canvas.width, canvas.height] });
-        pdf.addImage(imgData, "JPEG", 0, 0, canvas.width, canvas.height);
-        pdf.save("GoToGo-Ticket.pdf");
-    }
+        
+        // PDF सेटअप
+        const pdf = new jsPDF({
+            orientation: "portrait",
+            unit: "px",
+            format: [canvas.width, canvas.height],
+        });
 
+        pdf.addImage(imgData, "JPEG", 0, 0, canvas.width, canvas.height);
+        
+        // टिकट सेव करें
+        const ticketID = document.getElementById("ticket-number").innerText;
+        pdf.save(`GoToGo-Ticket-${ticketID}.pdf`);
+
+        // B. सफलता का नोटिफिकेशन (Confirmation)
+        showToast("Ticket Downloaded Successfully! ✅");
+
+    } catch (error) {
+        console.error("PDF Error:", error);
+        showToast("Error generating PDF. Please try again. ❌");
+    } finally {
+        // C. बटन को वापस सामान्य करें
+        btn.innerText = originalText;
+        btn.disabled = false;
+        btn.style.opacity = "1";
+        btn.style.cursor = "pointer";
+    }
+}
     // ==========================================
     // ✈️ 1. SMART LOADER (AIRPORT THEME)
     // ==========================================
