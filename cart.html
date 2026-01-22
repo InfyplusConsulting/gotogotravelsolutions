@@ -1260,7 +1260,7 @@ width: 100%;
         <div>
           <p class="text-sm text-gray-500">Payment Status</p>
           <p
-            class="text-lg font-bold text-green-600 uppercase"
+            class="text-lg font-bold  uppercase"
             id="pdf-payment-status"
           >
             PAID
@@ -1783,122 +1783,265 @@ const processFile = (file) => new Promise((resolve, reject) => {
 
 // --- NEW FUNCTION: FETCH DB DATA & GENERATE PDF ---
 // --- NEW FUNCTION: FETCH DB DATA & GENERATE PDF (With Your Design) ---
+// async function fetchAndDownloadTicket(ticketId) {
+//     const { jsPDF } = window.jspdf;
+    
+//     // 1. सही Template ID पकड़ें
+//     const ticketElement = document.getElementById("ticket-template");
+    
+//     const btn = document.getElementById("download-btn-final");
+//     const originalText = btn ? btn.innerText : "";
+//     if(btn) btn.innerText = "Processing...";
+
+//     try {
+//         // --- Step A: DB Fetch ---
+//         const response = await fetch(`https://paymentgatewayforshuttletoagra.onrender.com/api/ticket/${ticketId}`);
+//         const data = await response.json();
+
+//         if (!data.success) {
+//             throw new Error("Ticket not found in database");
+//         }
+
+//         const booking = data.booking; 
+
+//         // --- Step B: Populate Data (Matching Your IDs) ---
+        
+//         // 1. Top Section
+//         setText("pdf-ticket-id", booking.ticketNumber);
+        
+//         // Date formatting
+//         const bookingDate = new Date(booking.createdAt).toLocaleDateString("en-IN");
+//         setText("pdf-booking-date", `Date: ${bookingDate}`);
+
+//         // 2. Trip Details
+//         // setText("pdf-package", "Shuttle To Agra"); // Hardcoded or dynamic
+//         setText("pdf-tour-date", booking.billing.tourDate);
+//         setText("pdf-pickup", "Agra"); // Or booking.billing.pickupLocation
+//         setText("pdf-hotel", booking.billing.hotelName || "N/A");
+
+//         // 3. Lead Traveler
+//         setText("pdf-name", `${booking.billing.firstName} ${booking.billing.lastName}`);
+//         setText("pdf-mobile", booking.billing.mobile);
+//         setText("pdf-email", booking.billing.email);
+        
+//         // Count total travelers
+//         const totalPax = (booking.cart.adults || 0) + (booking.cart.children || 0) + (booking.cart.infants || 0);
+//         setText("pdf-total-pax", totalPax);
+
+//         // 4. Payment Info (FIXED LOGIC)
+//         // हम toLowerCase() लगा रहे हैं ताकि 'Cash' और 'cash' दोनों काम करें
+//         const pMethod = booking.paymentMethod ? booking.paymentMethod.toLowerCase() : "";
+        
+//         const payStatus = pMethod === "cash" ? "PAY ON ARRIVAL" : "PAID ONLINE";
+        
+//         // Cash के लिए Orange रंग, Online के लिए Green
+//         const payColor = pMethod === "cash" ? "text-orange-600" : "text-green-600";
+        
+//         const payElem = document.getElementById("pdf-payment-status");
+//         if(payElem) {
+//             payElem.innerText = payStatus;
+//             // पुरानी क्लासेज हटाकर नई लगाएं
+//             payElem.className = `text-lg font-bold uppercase ${payColor}`;
+//         }
+        
+//         setText("pdf-amount", `Rs. ${booking.amountPaid}`);
+
+//         // 5. Traveler List Table (Dynamic)
+//         const tbody = document.getElementById("pdf-traveler-list");
+//         if (tbody) {
+//             tbody.innerHTML = ""; // Clear old rows
+//             booking.travelers.forEach(t => {
+//                 const tr = document.createElement("tr");
+//                 tr.className = "border-b border-gray-100";
+//                 tr.innerHTML = `
+//                     <td class="p-2 font-medium">${t.name}</td>
+//                     <td class="p-2 text-gray-600">${t.type}</td>
+//                     <td class="p-2 text-gray-600">${t.age}</td>
+//                 `;
+//                 tbody.appendChild(tr);
+//             });
+//         }
+
+//         // --- Step C: Generate PDF ---
+//         ticketElement.classList.remove("hidden"); // Show temporarily
+        
+//         // Use html2canvas
+//         const canvas = await html2canvas(ticketElement, { 
+//             scale: 2, 
+//             useCORS: true,
+//             logging: false
+//         });
+        
+//         const imgData = canvas.toDataURL("image/png");
+        
+//         // A4 PDF Setup
+//         const pdf = new jsPDF("p", "mm", "a4");
+//         const pdfWidth = pdf.internal.pageSize.getWidth();
+//         const pdfHeight = (canvas.height * pdfWidth) / canvas.width;
+        
+//         pdf.addImage(imgData, "PNG", 0, 0, pdfWidth, pdfHeight);
+//         pdf.save(`GoToGo_Ticket_${booking.ticketNumber}.pdf`);
+
+//         alert("Ticket Downloaded Successfully!");
+
+//     } catch (err) {
+//         console.error("PDF Gen Error:", err);
+//         alert("Error: " + err.message);
+//     } finally {
+//         // Hide again & Reset Button
+//         ticketElement.classList.add("hidden");
+//         if(btn) btn.innerText = originalText;
+//     }
+// }
+
 async function fetchAndDownloadTicket(ticketId) {
     const { jsPDF } = window.jspdf;
-    
-    // 1. सही Template ID पकड़ें
     const ticketElement = document.getElementById("ticket-template");
-    
     const btn = document.getElementById("download-btn-final");
     const originalText = btn ? btn.innerText : "";
-    if(btn) btn.innerText = "Processing...";
+
+    if (btn) {
+        btn.innerText = "Processing...";
+        btn.disabled = true;
+    }
 
     try {
         // --- Step A: DB Fetch ---
         const response = await fetch(`https://paymentgatewayforshuttletoagra.onrender.com/api/ticket/${ticketId}`);
         const data = await response.json();
 
-        if (!data.success) {
-            throw new Error("Ticket not found in database");
-        }
+        if (!data.success) throw new Error("Ticket not found");
 
-        const booking = data.booking; 
+        // डेटा भरना (यह फंक्शन आपके पास पहले से है)
+        renderTicketDataToPDF(data.booking);
 
-        // --- Step B: Populate Data (Matching Your IDs) ---
-        
-        // 1. Top Section
-        setText("pdf-ticket-id", booking.ticketNumber);
-        
-        // Date formatting
-        const bookingDate = new Date(booking.createdAt).toLocaleDateString("en-IN");
-        setText("pdf-booking-date", `Date: ${bookingDate}`);
-
-        // 2. Trip Details
-        // setText("pdf-package", "Shuttle To Agra"); // Hardcoded or dynamic
-        setText("pdf-tour-date", booking.billing.tourDate);
-        setText("pdf-pickup", "Agra"); // Or booking.billing.pickupLocation
-        setText("pdf-hotel", booking.billing.hotelName || "N/A");
-
-        // 3. Lead Traveler
-        setText("pdf-name", `${booking.billing.firstName} ${booking.billing.lastName}`);
-        setText("pdf-mobile", booking.billing.mobile);
-        setText("pdf-email", booking.billing.email);
-        
-        // Count total travelers
-        const totalPax = (booking.cart.adults || 0) + (booking.cart.children || 0) + (booking.cart.infants || 0);
-        setText("pdf-total-pax", totalPax);
-
-        // 4. Payment Info (FIXED LOGIC)
-        // हम toLowerCase() लगा रहे हैं ताकि 'Cash' और 'cash' दोनों काम करें
-        const pMethod = booking.paymentMethod ? booking.paymentMethod.toLowerCase() : "";
-        
-        const payStatus = pMethod === "cash" ? "PAY ON ARRIVAL" : "PAID ONLINE";
-        
-        // Cash के लिए Orange रंग, Online के लिए Green
-        const payColor = pMethod === "cash" ? "text-orange-600" : "text-green-600";
-        
-        const payElem = document.getElementById("pdf-payment-status");
-        if(payElem) {
-            payElem.innerText = payStatus;
-            // पुरानी क्लासेज हटाकर नई लगाएं
-            payElem.className = `text-lg font-bold uppercase ${payColor}`;
-        }
-        
-        setText("pdf-amount", `Rs. ${booking.amountPaid}`);
-
-        // 5. Traveler List Table (Dynamic)
-        const tbody = document.getElementById("pdf-traveler-list");
-        if (tbody) {
-            tbody.innerHTML = ""; // Clear old rows
-            booking.travelers.forEach(t => {
-                const tr = document.createElement("tr");
-                tr.className = "border-b border-gray-100";
-                tr.innerHTML = `
-                    <td class="p-2 font-medium">${t.name}</td>
-                    <td class="p-2 text-gray-600">${t.type}</td>
-                    <td class="p-2 text-gray-600">${t.age}</td>
-                `;
-                tbody.appendChild(tr);
-            });
-        }
+        // --- Step B: FIX: रेंडर टिकट को स्क्रीन के बाहर भेजें (Layout Shift रोकने के लिए) ---
+        ticketElement.style.position = 'fixed';
+        ticketElement.style.left = '-9999px'; // स्क्रीन से बहुत दूर
+        ticketElement.style.top = '0';
+        ticketElement.style.display = 'block'; // 'hidden' क्लास के बजाय block का उपयोग करें
+        ticketElement.classList.remove("hidden");
 
         // --- Step C: Generate PDF ---
-        ticketElement.classList.remove("hidden"); // Show temporarily
-        
-        // Use html2canvas
         const canvas = await html2canvas(ticketElement, { 
             scale: 2, 
             useCORS: true,
-            logging: false
+            logging: false,
+            windowWidth: 800 // Canvas को बताएं कि चौड़ाई कितनी लेनी है
         });
-        
+
         const imgData = canvas.toDataURL("image/png");
-        
-        // A4 PDF Setup
         const pdf = new jsPDF("p", "mm", "a4");
         const pdfWidth = pdf.internal.pageSize.getWidth();
         const pdfHeight = (canvas.height * pdfWidth) / canvas.width;
         
         pdf.addImage(imgData, "PNG", 0, 0, pdfWidth, pdfHeight);
-        pdf.save(`GoToGo_Ticket_${booking.ticketNumber}.pdf`);
+        pdf.save(`GoToGo_Ticket_${ticketId}.pdf`);
 
-        alert("Ticket Downloaded Successfully!");
+        // Alert के बजाय छोटा सा मैसेज दिखाएं (Alert स्क्रीन को फ्रीज कर देता है)
+        showToast("Ticket Saved Successfully! ✅");
 
     } catch (err) {
         console.error("PDF Gen Error:", err);
         alert("Error: " + err.message);
     } finally {
-        // Hide again & Reset Button
+        // --- Step D: रिसेट स्टाइल्स ---
         ticketElement.classList.add("hidden");
-        if(btn) btn.innerText = originalText;
+        ticketElement.style.position = '';
+        ticketElement.style.left = '';
+        if (btn) {
+            btn.innerText = originalText;
+            btn.disabled = false;
+        }
+    }
+}
+// ✅ नया फंक्शन: डेटा को PDF टेम्पलेट में भरना
+function renderTicketDataToPDF(booking) {
+    // 1. मुख्य जानकारी
+    setText("pdf-ticket-id", booking.ticketNumber);
+    
+    // डेट फॉर्मेटिंग
+    const bookingDate = new Date(booking.createdAt || Date.now()).toLocaleDateString("en-IN");
+    setText("pdf-booking-date", `Booking Date: ${bookingDate}`);
+
+    // 2. ट्रिप की जानकारी
+    const tourDate = booking.billing.tourDate || booking.billing.pickupDate;
+    setText("pdf-package", booking.cart.packageName || "Shuttle Service");
+    setText("pdf-tour-date", tourDate);
+    setText("pdf-pickup", booking.billing.pickupAddress || booking.billing.hotelAddress); 
+    setText("pdf-hotel", booking.billing.hotelName || "N/A");
+
+    // 3. लीड ट्रेवलर की जानकारी
+    setText("pdf-name", `${booking.billing.firstName} ${booking.billing.lastName}`);
+    setText("pdf-mobile", booking.billing.mobile);
+    setText("pdf-email", booking.billing.email);
+    
+    // कुल यात्री गिनें
+    const totalPax = (booking.cart.adults || 0) + (booking.cart.children || 0) + (booking.cart.infants || 0);
+    setText("pdf-total-pax", totalPax);
+
+    // 4. पेमेंट की जानकारी
+    const pMethod = booking.paymentMethod ? booking.paymentMethod.toLowerCase() : "";
+    const payStatus = pMethod === "cash" ? "PAY ON ARRIVAL" : "PAID ONLINE";
+    const payColor = pMethod === "cash" ? "text-orange-600" : "text-green-600";
+    
+    const payElem = document.getElementById("pdf-payment-status");
+    if(payElem) {
+        payElem.innerText = payStatus;
+        // पुरानी क्लास हटाकर नई रंग वाली क्लास लगाएं
+        payElem.className = `text-lg font-bold uppercase ${payColor}`;
+    }
+    
+    setText("pdf-amount", `Rs. ${booking.amountPaid}`);
+
+    // 5. पैसेंजर लिस्ट टेबल (डायनामिक)
+    const tbody = document.getElementById("pdf-traveler-list");
+    if (tbody && booking.travelers) {
+        tbody.innerHTML = ""; // पुरानी लिस्ट साफ करें
+        booking.travelers.forEach(t => {
+            const tr = document.createElement("tr");
+            tr.className = "border-b border-gray-100";
+            tr.innerHTML = `
+                <td class="p-2 font-medium">${t.name}</td>
+                <td class="p-2 text-gray-600">${t.type || 'Adult'}</td>
+                <td class="p-2 text-gray-600">${t.age || 'N/A'}</td>
+            `;
+            tbody.appendChild(tr);
+        });
     }
 }
 
-
-// Helper function to safely set text
+// हेल्पर फंक्शन (अगर पहले से नहीं है तो इसे भी जोड़ लें)
 function setText(id, text) {
     const el = document.getElementById(id);
     if(el) el.innerText = text;
+}
+
+// ✅ नोटिफिकेशन दिखाने के लिए फंक्शन
+function showToast(message) {
+    const toast = document.createElement("div");
+    toast.style.cssText = `
+        position: fixed; 
+        top: 20px; 
+        right: 20px;
+        background: #f4be30; 
+        color: #000;
+        padding: 12px 20px; 
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        z-index: 100000;
+        font-weight: bold;
+        font-family: 'Inter', sans-serif;
+        transition: opacity 0.5s ease;
+    `;
+    toast.textContent = message;
+    document.body.appendChild(toast);
+
+    // 4 सेकंड बाद हटा दें
+    setTimeout(() => {
+        toast.style.opacity = "0";
+        setTimeout(() => toast.remove(), 500);
+    }, 4000);
 }
 
       // --- MAIN EXECUTION ---
