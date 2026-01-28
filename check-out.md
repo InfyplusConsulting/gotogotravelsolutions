@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-        <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Booking Shuttle To Agra | GoToGo Travel Solutions</title>
     <meta
@@ -39,958 +39,2152 @@
     />
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Add this inside the <head> tag -->
-<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-    <link rel="stylesheet" href="navbar.css">
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <link rel="stylesheet" href="navbar.css" />
     <script>
-        // Define your custom color for Tailwind CSS
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        brand: '#f4be30',
-                        'brand-dark': '#dca92b', // A slightly darker shade for hover effects
-                    }
-                }
-            }
-        }
+      // Define your custom color for Tailwind CSS
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              brand: "#f4be30",
+              "brand-dark": "#dca92b", // A slightly darker shade for hover effects
+            },
+          },
+        },
+      };
     </script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
     <style>
-        body {
-            font-family: 'Inter', sans-serif;
-        }
-        input[type="date"]::-webkit-calendar-picker-indicator {
-            cursor: pointer;
-            opacity: 0.6;
-        }
-        /* Style for the disabled button */
-        #book-now-btn:disabled {
-            background-color: #9ca3af; /* gray-400 */
-            color: #e5e7eb;      /* gray-200 */
-            cursor: not-allowed;
-            pointer-events: none; /* Prevents click events */
-        }
-        #book-now-btn:disabled:hover {
-             background-color: #9ca3af; /* gray-400 */
-        }
-        /* Style for highlighting form errors */
-.form-error {
-    border-color: #ef4444 !important; /* red-500 */
-    box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.5) !important;
-}
-    </style>
-</head>
-<body class="bg-gray-50">
-
-            <!-- Navbar -->
-<header class="navbar">
-  <div class="container">
-    <a href="index.html" class="logo">
-      <img src="./assets/gotogo final logos/g2g shuttle.png" alt="Logo" />
-    </a>
-
-    <nav>
-      <ul class="desktop-links">
-        <li><a href="index.html" class="menu-item">Home</a></li>
-        <li><a href="fleet.html" class="menu-item">Fleet</a></li>
-        <li><a href="roomsnvenues.html" class="menu-item">Rooms & Venues</a></li>
-        <li><a href="shuttletoagra.html" class="menu-item active">Shuttle To Agra</a></li>
-        <li><a href="airport-shuttle.html" class="menu-item">Airport Shuttle</a></li>
-        <li><a href="partner.html" class="menu-item">Partner</a></li>
-        <li><a href="#contact" class="menu-item">Contact</a></li>
-      </ul>
-    </nav>
-
-    <img src="/burger.png" class="burger" id="burger" alt="menu" />
-
-    <div class="mobile-menu" id="mobile-menu">
-      <img src="/X.png" class="close" id="close" alt="close" />
-      <ul class="mobile-links">
-        <li><a href="index.html" class="menu-item">Home</a></li>
-        <li><a href="fleet.html" class="menu-item">Fleet</a></li>
-        <li><a href="roomsnvenues.html" class="menu-item">Rooms & Venues</a></li>
-        <li><a href="shuttletoagra.html" class="menu-item active">Shuttle To Agra</a></li>
-        <li><a href="airport-shuttle.html" class="menu-item">Airport Shuttle</a></li>
-        <li><a href="partner.html" class="menu-item">Partner</a></li>
-        <li><a href="#contact" class="menu-item">Contact</a></li>
-      </ul>
-    </div>
-  </div>
-</header>
-
-<!-- CSS -->
-<style>
-
-.navbar {
-  background: #fff;
-  border-bottom: 1px solid #eee;
-  width: 100%;
-  padding: 8px 30px;
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-}
-
-.navbar .container {
-  max-width: 1200px;
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.logo img {
-  height: 70px;
-  width: auto;
-}
-
-/* Desktop Menu */
-.desktop-links {
-  list-style: none;
-  display: flex;
-  gap: 25px;
-  /* margin-top: 1rem; */
-}
-
-.menu-item {
-  text-decoration: none;
-  color: #333;
-  font-weight: 500;
-  transition: 0.3s ease;
-  padding: 6px 10px;
-}
-
-.menu-item:hover,
-.menu-item.active {
-  color: #0c52a2; /* heading blue shade */
-  border-bottom: 2px solid #0c52a2;
-}
-
-/* Hamburger */
-.burger {
-  display: none;
-  width: 35px;
-  cursor: pointer;
-}
-
-/* Mobile Menu */
-.mobile-menu {
-  position: fixed;
-  top: 0;
-  right: -100%;
-  height: 100vh;
-  width: 250px;
-  background: #fff;
-  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
-  transition: right 0.3s ease-in-out;
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-}
-
-.mobile-menu.active {
-  right: 0;
-}
-
-.mobile-menu .close {
-  width: 30px;
-  margin-left: auto;
-  cursor: pointer;
-  margin-bottom: 20px;
-}
-
-.mobile-links {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
-
-.mobile-links a {
-  text-decoration: none;
-  color: #333;
-  font-size: 18px;
-  font-weight: 500;
-}
-
-.mobile-links a:hover {
-  color: #0c52a2;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-  .desktop-links {
-    display: none;
-  }
-  .burger {
-    display: block;
-  }
-}
-</style>
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-  const burger = document.getElementById("burger");
-  const closeBtn = document.getElementById("close");
-  const mobileMenu = document.getElementById("mobile-menu");
-
-  if (burger && mobileMenu) {
-    burger.addEventListener("click", () => {
-      mobileMenu.classList.add("active");
-    });
-  }
-
-  if (closeBtn && mobileMenu) {
-    closeBtn.addEventListener("click", () => {
-      mobileMenu.classList.remove("active");
-    });
-  }
-
-  // (Optional) close menu when clicking any link
-  document.querySelectorAll(".mobile-links a").forEach((link) => {
-    link.addEventListener("click", () => {
-      if (mobileMenu) {
-        mobileMenu.classList.remove("active");
+      body {
+        font-family: "Inter", sans-serif;
       }
-    });
-  });
-});
-</script>
+      input[type="date"]::-webkit-calendar-picker-indicator {
+        cursor: pointer;
+        opacity: 0.6;
+      }
+      /* Style for the disabled button */
+      #book-now-btn:disabled {
+        background-color: #9ca3af; /* gray-400 */
+        color: #e5e7eb; /* gray-200 */
+        cursor: not-allowed;
+        pointer-events: none; /* Prevents click events */
+      }
+      #book-now-btn:disabled:hover {
+        background-color: #9ca3af; /* gray-400 */
+      }
+      /* Style for highlighting form errors */
+      .form-error {
+        border-color: #ef4444 !important; /* red-500 */
+        box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.5) !important;
+      }
+    </style>
+  </head>
+  <body class="bg-gray-50">
+    <!-- Navbar -->
+    <header class="navbar">
+      <div class="container">
+        <a href="index.html" class="logo">
+          <img src="./assets/gotogo final logos/g2g shuttle.png" alt="Logo" />
+        </a>
+
+        <nav>
+          <ul class="desktop-links">
+            <li><a href="index.html" class="menu-item">Home</a></li>
+            <li><a href="fleet.html" class="menu-item">Fleet</a></li>
+            <li>
+              <a href="roomsnvenues.html" class="menu-item">Rooms & Venues</a>
+            </li>
+            <li>
+              <a href="shuttletoagra.html" class="menu-item active"
+                >Shuttle To Agra</a
+              >
+            </li>
+            <li>
+              <a href="airport-shuttle.html" class="menu-item"
+                >Airport Shuttle</a
+              >
+            </li>
+            <li><a href="partner.html" class="menu-item">Partner</a></li>
+            <li><a href="#contact" class="menu-item">Contact</a></li>
+          </ul>
+        </nav>
+
+        <img src="/burger.png" class="burger" id="burger" alt="menu" />
+
+        <div class="mobile-menu" id="mobile-menu">
+          <img src="/X.png" class="close" id="close" alt="close" />
+          <ul class="mobile-links">
+            <li><a href="index.html" class="menu-item">Home</a></li>
+            <li><a href="fleet.html" class="menu-item">Fleet</a></li>
+            <li>
+              <a href="roomsnvenues.html" class="menu-item">Rooms & Venues</a>
+            </li>
+            <li>
+              <a href="shuttletoagra.html" class="menu-item active"
+                >Shuttle To Agra</a
+              >
+            </li>
+            <li>
+              <a href="airport-shuttle.html" class="menu-item"
+                >Airport Shuttle</a
+              >
+            </li>
+            <li><a href="partner.html" class="menu-item">Partner</a></li>
+            <li><a href="#contact" class="menu-item">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+    </header>
+
+    <!-- CSS -->
+    <style>
+      .navbar {
+        background: #fff;
+        border-bottom: 1px solid #eee;
+        width: 100%;
+        padding: 8px 30px;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+      }
+
+      .navbar .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .logo img {
+        height: 70px;
+        width: auto;
+      }
+
+      /* Desktop Menu */
+      .desktop-links {
+        list-style: none;
+        display: flex;
+        gap: 25px;
+        /* margin-top: 1rem; */
+      }
+
+      .menu-item {
+        text-decoration: none;
+        color: #333;
+        font-weight: 500;
+        transition: 0.3s ease;
+        padding: 6px 10px;
+      }
+
+      .menu-item:hover,
+      .menu-item.active {
+        color: #0c52a2; /* heading blue shade */
+        border-bottom: 2px solid #0c52a2;
+      }
+
+      /* Hamburger */
+      .burger {
+        display: none;
+        width: 35px;
+        cursor: pointer;
+      }
+
+      /* Mobile Menu */
+      .mobile-menu {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        height: 100vh;
+        width: 250px;
+        background: #fff;
+        box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+        transition: right 0.3s ease-in-out;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .mobile-menu.active {
+        right: 0;
+      }
+
+      .mobile-menu .close {
+        width: 30px;
+        margin-left: auto;
+        cursor: pointer;
+        margin-bottom: 20px;
+      }
+
+      .mobile-links {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+      }
+
+      .mobile-links a {
+        text-decoration: none;
+        color: #333;
+        font-size: 18px;
+        font-weight: 500;
+      }
+
+      .mobile-links a:hover {
+        color: #0c52a2;
+      }
+
+      /* Responsive */
+      @media (max-width: 768px) {
+        .desktop-links {
+          display: none;
+        }
+        .burger {
+          display: block;
+        }
+      }
+    </style>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const burger = document.getElementById("burger");
+        const closeBtn = document.getElementById("close");
+        const mobileMenu = document.getElementById("mobile-menu");
+
+        if (burger && mobileMenu) {
+          burger.addEventListener("click", () => {
+            mobileMenu.classList.add("active");
+          });
+        }
+
+        if (closeBtn && mobileMenu) {
+          closeBtn.addEventListener("click", () => {
+            mobileMenu.classList.remove("active");
+          });
+        }
+
+        // (Optional) close menu when clicking any link
+        document.querySelectorAll(".mobile-links a").forEach((link) => {
+          link.addEventListener("click", () => {
+            if (mobileMenu) {
+              mobileMenu.classList.remove("active");
+            }
+          });
+        });
+      });
+    </script>
 
     <div class="container mx-auto max-w-7xl p-4 sm:p-6 lg:p-8">
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            
-            <!-- Right Side: Your Cart (First in code for mobile-first layout) -->
-            <div class="lg:col-span-1 lg:order-last">
-                <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-200 sticky top-8">
-                    <h2 class="text-2xl font-bold text-gray-800 mb-6 border-b pb-4">Your cart</h2>
-                    <div id="cart-summary-container" class="space-y-4">
-                       <!-- Cart content will be injected here -->
-                       <div class="text-center p-8">
-                           <p class="text-gray-500">Your cart is empty.</p>
-                           <a href="shuttletoagra.html#packages" class="text-brand hover:underline mt-2 inline-block">Go back</a>
-                       </div>
-                    </div>
-                </div>
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <!-- Right Side: Your Cart (First in code for mobile-first layout) -->
+        <div class="lg:col-span-1 lg:order-last">
+          <div
+            class="bg-white p-6 rounded-lg shadow-sm border border-gray-200 sticky top-8"
+          >
+            <h2 class="text-2xl font-bold text-gray-800 mb-6 border-b pb-4">
+              Your cart
+            </h2>
+            <div id="cart-summary-container" class="space-y-4">
+              <!-- Cart content will be injected here -->
+              <div class="text-center p-8">
+                <p class="text-gray-500">Your cart is empty.</p>
+                <a
+                  href="shuttletoagra.html#packages"
+                  class="text-brand hover:underline mt-2 inline-block"
+                  >Go back</a
+                >
+              </div>
             </div>
+          </div>
+        </div>
 
-            <!-- Left Side: Billing and Traveler Info (Second in code) -->
-            <div class="lg:col-span-2 space-y-8">
-                
-                <!-- Billing Details -->
-                <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
-                    <h2 class="text-2xl font-bold text-gray-800 mb-6">BILLING DETAILS</h2>
-                    <div id="billing-form" class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div>
-                            <label for="first-name" class="block text-sm font-medium text-gray-700 mb-1">First name *</label>
-                            <input type="text" id="first-name" placeholder="First name" required class="w-full border-gray-300 rounded-md shadow-sm focus:ring-brand focus:border-brand">
-                        </div>
-                        <div>
-                            <label for="last-name" class="block text-sm font-medium text-gray-700 mb-1">Last name *</label>
-                            <input type="text" id="last-name" placeholder="Last name" required class="w-full border-gray-300 rounded-md shadow-sm focus:ring-brand focus:border-brand">
-                        </div>
-                         <div>
-                            <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email *</label>
-                            <input type="email" id="email" placeholder="you@example.com" required class="w-full border-gray-300 rounded-md shadow-sm focus:ring-brand focus:border-brand">
-                        </div>
-                        <div>
-                            <label for="mobile" class="block text-sm font-medium text-gray-700 mb-1">Mobile Number *</label>
-                            <input type="tel" id="mobile" placeholder="Mobile Number" required maxlength="10" class="w-full border-gray-300 rounded-md shadow-sm focus:ring-brand focus:border-brand">
-                        </div>
-                        <div>
+        <!-- Left Side: Billing and Traveler Info (Second in code) -->
+        <div class="lg:col-span-2 space-y-8">
+          <!-- Billing Details -->
+          <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+            <h2 class="text-2xl font-bold text-gray-800 mb-6">
+              BILLING DETAILS
+            </h2>
+            <div
+              id="billing-form"
+              class="grid grid-cols-1 md:grid-cols-2 gap-6"
+            >
+              <div>
+                <label
+                  for="first-name"
+                  class="block text-sm font-medium text-gray-700 mb-1"
+                  >First name *</label
+                >
+                <input
+                  type="text"
+                  id="first-name"
+                  placeholder="First name"
+                  required
+                  class="w-full border-gray-300 rounded-md shadow-sm focus:ring-brand focus:border-brand"
+                />
+              </div>
+              <div>
+                <label
+                  for="last-name"
+                  class="block text-sm font-medium text-gray-700 mb-1"
+                  >Last name *</label
+                >
+                <input
+                  type="text"
+                  id="last-name"
+                  placeholder="Last name"
+                  required
+                  class="w-full border-gray-300 rounded-md shadow-sm focus:ring-brand focus:border-brand"
+                />
+              </div>
+              <div>
+                <label
+                  for="email"
+                  class="block text-sm font-medium text-gray-700 mb-1"
+                  >Email *</label
+                >
+                <input
+                  type="email"
+                  id="email"
+                  placeholder="you@example.com"
+                  required
+                  class="w-full border-gray-300 rounded-md shadow-sm focus:ring-brand focus:border-brand"
+                />
+              </div>
+              <div>
+                <label
+                  for="mobile"
+                  class="block text-sm font-medium text-gray-700 mb-1"
+                  >Mobile Number *</label
+                >
+                <input
+                  type="tel"
+                  id="mobile"
+                  placeholder="Mobile Number"
+                  required
+                  maxlength="10"
+                  class="w-full border-gray-300 rounded-md shadow-sm focus:ring-brand focus:border-brand"
+                />
+              </div>
+              <!-- <div>
                             <label for="hotel-name" class="block text-sm font-medium text-gray-700 mb-1">Hotel Name *</label>
                             <input type="text" id="hotel-name" placeholder="Hotel Name" required class="w-full border-gray-300 rounded-md shadow-sm focus:ring-brand focus:border-brand">
                         </div>
                         <div>
                             <label for="hotel-address" class="block text-sm font-medium text-gray-700 mb-1">Hotel Address *</label>
                             <input type="text" id="hotel-address" placeholder="Hotel Address" required class="w-full border-gray-300 rounded-md shadow-sm focus:ring-brand focus:border-brand">
-                        </div>
-                         <div class="md:col-span-2 grid grid-cols-1 sm:grid-cols-3 gap-6">
-                             <div>
-                                <label for="pickup-address" class="block text-sm font-medium text-gray-700 mb-1">Pick Up Address</label>
-                                <input type="text" id="pickup-address" placeholder="Pick Up Address" class="w-full border-gray-300 rounded-md shadow-sm focus:ring-brand focus:border-brand">
-                            </div>
-                            <div>
-                                <label for="town-city" class="block text-sm font-medium text-gray-700 mb-1">Town / City</label>
-                                <input type="text" id="town-city" placeholder="Town / City" class="w-full border-gray-300 rounded-md shadow-sm focus:ring-brand focus:border-brand">
-                            </div>
-                             <div>
-                                <label for="postcode" class="block text-sm font-medium text-gray-700 mb-1">Postcode / ZIP</label>
-                                <input type="text" id="postcode" placeholder="Postcode / ZIP" class="w-full border-gray-300 rounded-md shadow-sm focus:ring-brand focus:border-brand">
-                            </div>
-                        </div>
-                        <div class="md:col-span-2">
-                             <label for="tour-date" class="block text-sm font-medium text-gray-700 mb-1">Date of Tour *</label>
-                             <input type="date" id="tour-date" required class="w-full border-gray-300 bg-gray-100 rounded-md shadow-sm focus:ring-brand focus:border-brand p-2">
-                        </div>
-                        <div class="md:col-span-2">
-                            <label for="additional-info" class="block text-sm font-medium text-gray-700 mb-1">Additional Information</label>
-                            <textarea id="additional-info" rows="4" class="w-full border-gray-300 rounded-md shadow-sm focus:ring-brand focus:border-brand"></textarea>
-                        </div>
-                    </div>
-                </div>
+                        </div> -->
+              <div class="relative group">
+                <label
+                  for="hotel-name"
+                  class="block text-sm font-medium text-gray-700 mb-1"
+                  >Hotel Name *</label
+                >
 
-                <!-- Traveler Information -->
-                <div id="traveler-info-section" class="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
-                    <h2 class="text-2xl font-bold text-gray-800 mb-6">Traveler Information</h2>
-                    <!-- Adult Info Container -->
-                    <div id="adult-info-container" class="space-y-4"></div>
-                    <!-- Child Info Container (Conditional) -->
-                    <div id="child-info-section" class="hidden mt-6">
-                        <h3 class="text-lg font-semibold text-gray-700 mb-4 border-t pt-4">Children (5-11 Years):</h3>
-                        <div id="child-info-container" class="space-y-4"></div>
-                    </div>
-                </div>
+                <input
+                  type="text"
+                  id="hotel-name"
+                  placeholder="Type to search hotel..."
+                  autocomplete="off"
+                  required
+                  class="w-full border-gray-300 rounded-md shadow-sm focus:ring-brand focus:border-brand p-2"
+                />
 
-                <!-- Payment -->
-                <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
-                    <h2 class="text-2xl font-bold text-gray-800 mb-6">Payment</h2>
-                    <div class="space-y-4">
-                        <div class="border border-gray-200 rounded-md p-4 has-[:checked]:bg-brand/20 has-[:checked]:border-brand">
-                            <label class="flex items-center cursor-pointer">
-                                <input type="radio" name="payment-method" value="razorpay" class="h-4 w-4 text-brand border-gray-300 focus:ring-brand">
-                                <div class="ml-3">
-                                    <span class="block text-sm font-semibold text-gray-900">Razorpay</span>
-                                    <span class="block text-sm text-gray-500">Pay booking by credit card, debit card and netbanking</span>
-                                </div>
-                            </label>
-                        </div>
-                        <div class="border border-gray-200 rounded-md p-4 has-[:checked]:bg-brand/20 has-[:checked]:border-brand">
-                            <label class="flex items-center cursor-pointer">
-                                <input type="radio" name="payment-method" value="cash" class="h-4 w-4 text-brand border-gray-300 focus:ring-brand" checked>
-                                <div class="ml-3">
-                                    <span class="block text-sm font-semibold text-gray-900">Cash</span>
-                                    <span class="block text-sm text-gray-500">Pay booking by cash</span>
-                                </div>
-                            </label>
-                        </div>
-                    </div>
-                    <div class="mt-6 text-xs text-gray-500">
-                        <p>Your personal data will be used to process your order, support your experience throughout this website, and for other purposes described in our <a href="#" class="text-brand hover:underline">privacy policy</a>.</p>
-                    </div>
-                    <div class="mt-4 flex items-center">
-                        <input id="terms" name="terms" type="checkbox" class="h-4 w-4 text-brand border-gray-300 rounded focus:ring-brand">
-                        <label for="terms" class="ml-2 block text-sm text-gray-900">I have read and agree to the website *</label>
-                    </div>
-                    <div class="mt-6 p-4 bg-gray-100 rounded-md text-sm text-gray-700">
-                       <p><span class="font-bold">Note :</span> At the commencement of the trip only all details and payments are taken to assist in pre-purchasing the ticket to the Taj Mahal to avoid waiting time/ queue</p>
-                    </div>
-                    <div class="mt-8 border-t pt-6">
-                        <button type="button" id="book-now-btn" class="w-full bg-brand text-gray-800 font-bold py-3 px-6 rounded-lg hover:bg-brand-dark transition-colors text-lg" disabled>Book Now</button>
-                    </div>
+                <ul
+                  id="hotel-list-dropdown"
+                  class="hidden absolute z-50 w-full bg-white border border-gray-300 rounded-md shadow-lg max-h-60 overflow-y-auto mt-1"
+                ></ul>
+              </div>
+
+              <div class="mt-4">
+                <label
+                  for="hotel-address"
+                  class="block text-sm font-medium text-gray-700 mb-1"
+                  >Pickup Address (Hotel Address) *</label
+                >
+                <textarea
+                  id="hotel-address"
+                  rows="2"
+                  placeholder="Address will auto-fill based on hotel selection"
+                  required
+                  class="w-full border-gray-300 rounded-md shadow-sm focus:ring-brand focus:border-brand bg-gray-100"
+                  readonly
+                ></textarea>
+              </div>
+              <!-- <div class="md:col-span-2 grid grid-cols-1 sm:grid-cols-3 gap-6">
+                <div>
+                  <label
+                    for="pickup-address"
+                    class="block text-sm font-medium text-gray-700 mb-1"
+                    >Pick Up Address *</label
+                  >
+                  <input
+                    type="text"
+                    id="pickup-address"
+                    placeholder="Pick Up Address"
+                    required
+                    class="w-full border-gray-300 rounded-md shadow-sm focus:ring-brand focus:border-brand"
+                  />
                 </div>
+                <div>
+                  <label
+                    for="town-city"
+                    class="block text-sm font-medium text-gray-700 mb-1"
+                    >Town / City *</label
+                  >
+                  <input
+                    type="text"
+                    id="town-city"
+                    placeholder="Town / City"
+                    required
+                    class="w-full border-gray-300 rounded-md shadow-sm focus:ring-brand focus:border-brand"
+                  />
+                </div>
+                <div>
+                  <label
+                    for="postcode"
+                    class="block text-sm font-medium text-gray-700 mb-1"
+                    >Postcode / ZIP *</label
+                  >
+                  <input
+                    type="text"
+                    id="postcode"
+                    placeholder="Postcode / ZIP"
+                    required
+                    class="w-full border-gray-300 rounded-md shadow-sm focus:ring-brand focus:border-brand"
+                  />
+                </div>
+              </div> -->
+              
+              <div class="md:col-span-2">
+                <label
+                  for="tour-date"
+                  class="block text-sm font-medium text-gray-700 mb-1"
+                  >Date of Tour *</label
+                >
+                <input
+                  type="date"
+                  id="tour-date"
+                  required
+                  class="w-full border-gray-300 bg-gray-100 rounded-md shadow-sm focus:ring-brand focus:border-brand p-2"
+                />
+              </div>
+              <div class="md:col-span-2">
+                <label
+                  for="additional-info"
+                  class="block text-sm font-medium text-gray-700 mb-1"
+                  >Additional Information</label
+                >
+                <textarea
+                  id="additional-info"
+                  rows="4"
+                  class="w-full border-gray-300 rounded-md shadow-sm focus:ring-brand focus:border-brand"
+                ></textarea>
+              </div>
             </div>
+          </div>
 
+          <!-- Traveler Information -->
+          <div
+            id="traveler-info-section"
+            class="bg-white p-6 rounded-lg shadow-sm border border-gray-200"
+          >
+            <h2 class="text-2xl font-bold text-gray-800 mb-6">
+              Traveler Information*
+            </h2>
+            <!-- Adult Info Container -->
+            <div id="adult-info-container" class="space-y-4"></div>
+            <!-- Child Info Container (Conditional) -->
+            <div id="child-info-section" class="hidden mt-6">
+              <h3
+                class="text-lg font-semibold text-gray-700 mb-4 border-t pt-4"
+              >
+                Children (5-11 Years):
+              </h3>
+              <div id="child-info-container" class="space-y-4"></div>
+            </div>
+          </div>
+
+          <!-- Payment -->
+          <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+            <h2 class="text-2xl font-bold text-gray-800 mb-6">Payment</h2>
+            <div class="space-y-4">
+              <div
+                class="border border-gray-200 rounded-md p-4 has-[:checked]:bg-brand/20 has-[:checked]:border-brand"
+              >
+                <label class="flex items-center cursor-pointer">
+                  <input
+                    type="radio"
+                    name="payment-method"
+                    value="razorpay"
+                    class="h-4 w-4 text-brand border-gray-300 focus:ring-brand"
+                    checked
+                  />
+                  <div class="ml-3">
+                    <span class="block text-sm font-semibold text-gray-900"
+                      >Razorpay</span
+                    >
+                    <span class="block text-sm text-gray-500"
+                      >Pay booking by credit card, debit card and
+                      netbanking</span
+                    >
+                  </div>
+                </label>
+              </div>
+              <div
+                class="border border-gray-200 rounded-md p-4 has-[:checked]:bg-brand/20 has-[:checked]:border-brand"
+              >
+                <label class="flex items-center cursor-pointer">
+                  <input
+                    type="radio"
+                    name="payment-method"
+                    value="cash"
+                    class="h-4 w-4 text-brand border-gray-300 focus:ring-brand"
+                  />
+                  <div class="ml-3">
+                    <span class="block text-sm font-semibold text-gray-900"
+                      >Cash</span
+                    >
+                    <span class="block text-sm text-gray-500"
+                      >Pay booking by cash</span
+                    >
+                  </div>
+                </label>
+              </div>
+            </div>
+            <div class="mt-6 text-xs text-gray-500">
+              <p>
+                Your personal data will be used to process your order, support
+                your experience throughout this website, and for other purposes
+                described in our
+                <a
+                  href="/privacy-policy.html"
+                  class="text-brand hover:underline"
+                  >privacy policy</a
+                >.
+              </p>
+            </div>
+            <div class="mt-4 flex items-center">
+              <input
+                id="terms"
+                name="terms"
+                type="checkbox"
+                class="h-4 w-4 text-brand border-gray-300 rounded focus:ring-brand"
+              />
+              <label for="terms" class="ml-2 block text-sm text-gray-900"
+                >I have read and agree to the website *</label
+              >
+            </div>
+            <div class="mt-6 p-4 bg-gray-100 rounded-md text-sm text-gray-700">
+              <p>
+                <span class="font-bold">Note :</span> At the commencement of the
+                trip only all details and payments are taken to assist in
+                pre-purchasing the ticket to the Taj Mahal to avoid waiting
+                time/ queue
+              </p>
+            </div>
+            <div class="mt-8 border-t pt-6">
+              <button
+                type="button"
+                id="book-now-btn"
+                class="w-full bg-brand text-gray-800 font-bold py-3 px-6 rounded-lg hover:bg-brand-dark transition-colors text-lg"
+              >
+                Book Now
+              </button>
+            </div>
+          </div>
         </div>
+      </div>
     </div>
 
-    <div id="booking-ticket" style="display: none; width: 800px; padding: 25px; border: 1px solid #ccc; font-family: sans-serif; background-color: #f9f9f9;">
-    <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #333; padding-bottom: 15px;">
-        <h1 style="margin: 0; font-size: 28px; color: #333;">Booking Confirmation</h1>
-        <img src="./assets/gotogo final logos/g2g shuttle.png" alt="Logo" style="height: 50px;">
-    </div>
-    <div style="padding: 20px 0;">
-        <h2 style="font-size: 20px; margin-top: 0;">Tour Details</h2>
+    <div
+      id="booking-ticket"
+      style="
+        display: none;
+        width: 800px;
+        padding: 25px;
+        border: 1px solid #ccc;
+        font-family: sans-serif;
+        background-color: #f9f9f9;
+      "
+    >
+      <div
+        style="
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          border-bottom: 2px solid #333;
+          padding-bottom: 15px;
+        "
+      >
+        <h1 style="margin: 0; font-size: 28px; color: #333">
+          Booking Confirmation
+        </h1>
+        <img
+          src="./assets/gotogo final logos/g2g shuttle.png"
+          alt="Logo"
+          style="height: 50px"
+        />
+      </div>
+      <div style="padding: 20px 0">
+        <h2 style="font-size: 20px; margin-top: 0">Tour Details</h2>
         <p><strong>Package:</strong> <span id="ticket-package"></span></p>
         <p><strong>Tour Date:</strong> <span id="ticket-date"></span></p>
-        <p><strong>Travelers:</strong> <span id="ticket-travelers-count"></span></p>
-    </div>
-    <div style="border-top: 1px solid #eee; padding-top: 20px;">
-        <h2 style="font-size: 20px; margin-top: 0;">Lead Traveler Information</h2>
+        <p>
+          <strong>Travelers:</strong> <span id="ticket-travelers-count"></span>
+        </p>
+      </div>
+      <div style="border-top: 1px solid #eee; padding-top: 20px">
+        <h2 style="font-size: 20px; margin-top: 0">
+          Lead Traveler Information
+        </h2>
         <p><strong>Name:</strong> <span id="ticket-name"></span></p>
         <p><strong>Email:</strong> <span id="ticket-email"></span></p>
         <p><strong>Mobile:</strong> <span id="ticket-mobile"></span></p>
-    </div>
-    <div style="margin-top: 25px; padding: 15px; background-color: #e6f7ff; border: 1px solid #b3e0ff; border-radius: 5px; text-align: center;">
-        <p style="margin: 0; font-size: 16px; color: #005f99;">
-            <strong>This is your booking confirmation. A detailed confirmation email has been sent to your registered email address.</strong>
-        </p>
-        <p style="margin: 5px 0 0 0; font-size: 14px; color: #005f99;">Please have this ticket ready for your tour.</p>
-    </div>
-</div>
-
-<!-- Celebration Overlay Section -->
-<div class="overlay" id="celebrationOverlay" style="display: none;">
-  <div class="celebrate-card">
-
-    <!-- Close Button -->
-    <button class="close-btn" onclick="toggleOverlay()">✖</button>
-
-    <!-- Decorative flowers -->
-    <div class="flower flower-left">🌸</div>
-    <div class="flower flower-right">🌺</div>
-
-    <!-- Content -->
-    <div class="celebrate-content">
-      <h1>🎉 Thank You For Choosing Us!</h1>
-      <h2>Your Booking is Confirmed ✅</h2>
-      <p>We can’t wait to see you! A confirmation has been sent to your email.</p>
-    </div>
-
-    <!-- Confetti -->
-    <div class="confetti"></div>
-  </div>
-</div>
-
-<!-- Styles -->
-<style>
-.overlay {
-  position: fixed;
-  top: 0; left: 0;
-  width: 100vw; height: 100vh;
-  background: rgba(0,0,0,0.6);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 9999;
-}
-.celebrate-card {
-  background: #111;
-  color: #fff;
-  text-align: center;
-  padding: 40px;
-  border-radius: 16px;
-  position: relative;
-  max-width: 600px;
-  width: 90%;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-}
-.celebrate-card h1 {
-  color: #f4be30;
-  font-size: 2.5rem;
-  margin-bottom: 10px;
-}
-.celebrate-card h2 {
-  font-size: 1.5rem;
-  margin-bottom: 20px;
-}
-/* Close button */
-.close-btn {
-  position: absolute;
-  top: 12px;
-  right: 12px;
-  background: #f4be30;
-  border: none;
-  border-radius: 50%;
-  width: 32px;
-  height: 32px;
-  font-size: 18px;
-  font-weight: bold;
-  cursor: pointer;
-  color: #111;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
-}
-.close-btn:hover {
-  background: #ffcc00;
-}
-
-/* Flowers */
-.flower {
-  position: absolute;
-  font-size: 2.5rem;
-  animation: floaty 4s ease-in-out infinite;
-}
-.flower-left { top: -20px; left: -20px; }
-.flower-right { bottom: -20px; right: -20px; }
-@keyframes floaty {
-  0%,100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
-}
-/* Confetti */
-.confetti span {
-  position: absolute;
-  width: 10px; height: 16px;
-  background: gold;
-  opacity: 0.8;
-  animation: fall linear infinite;
-}
-@keyframes fall {
-  0% { transform: translateY(-10vh) rotate(0); }
-  100% { transform: translateY(110vh) rotate(360deg); }
-}
-</style>
-
-<div class="loading-overlay" id="loadingOverlay">
-    <div class="spinner"></div>
-    <p>Confirming your booking...</p>
-    <p>Please wait, this may take a moment.</p>
-</div>
-
-<style>
-  /* Add this to your main <style> block */
-.loading-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background: rgba(0, 0, 0, 0.75);
-    display: none; /* Hidden by default */
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    z-index: 10000; /* Make sure it's on top of everything */
-    color: white;
-    text-align: center;
-}
-
-.spinner {
-    width: 50px;
-    height: 50px;
-    border: 5px solid #f3f3f3;
-    border-top: 5px solid #f4be30; /* Your brand color */
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
-    margin-bottom: 20px;
-}
-
-.loading-overlay p {
-    margin: 5px 0;
-    font-size: 1.1rem;
-}
-
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-</style>
-
-
-
-        <!-- footer  -->
-<footer style="background-color: #000; color: #d1d5db; font-family: railway; font-size: 0.875rem;" id="contact">
-  <div style="max-width: 1280px; margin-left: auto; margin-right: auto; padding-left: 1.5rem; padding-right: 1.5rem; padding-top: 1.5rem; padding-bottom: 1.5rem;">
-    <div style="display: flex; flex-direction: row; align-items: center; justify-content: space-between; gap: 1.5rem;" class="footer-css">
-      
-      <div style="display: flex; flex-direction: column; align-items: flex-start; text-align: left; gap: 0.25rem;" class="footer-contact-css">
-        <a href="tel:+917065650650" style="color: inherit; text-decoration: none; transition: color 0.15s;">
-          📞 +91 7065 650 650
-        </a>
-        <a href="mailto:care@gotogotravelsolutions.com" style="color: inherit; text-decoration: none; transition: color 0.15s;">
-          ✉️ care@gotogotravelsolutions.com
-        </a>
       </div>
-
-      <div style="display: flex; flex-direction: column; align-items: center; text-align: center;">
-        <h1 style="font-size: 1.875rem; font-weight: lighter; color: #f4be30; margin:0; padding:0;">
-          GoToGo Travel Solutions
-        </h1>
-        <p style="font-size: 0.75rem; color: #9ca3af; margin-top: 0.5rem;">
-          © 2025 All Rights Reserved by GoToGo Travel Solutions LLP | Website developed by Infyplus Consulting
+      <div
+        style="
+          margin-top: 25px;
+          padding: 15px;
+          background-color: #e6f7ff;
+          border: 1px solid #b3e0ff;
+          border-radius: 5px;
+          text-align: center;
+        "
+      >
+        <p style="margin: 0; font-size: 16px; color: #005f99">
+          <strong
+            >This is your booking confirmation. A detailed confirmation email
+            has been sent to your registered email address.</strong
+          >
+        </p>
+        <p style="margin: 5px 0 0 0; font-size: 14px; color: #005f99">
+          Please have this ticket ready for your tour.
         </p>
       </div>
+    </div>
 
-      <div style="display: flex; flex-direction: column; align-items: flex-end; text-align: right; gap: 0.5rem;" class="footer-contact-css">
-        <span style="font-weight: 600; color: #fff;">Connect with us</span>
-        <div style="display: flex; align-items: center; gap: 0.75rem; margin-top: 0.25rem;">
-          <a href="https://www.facebook.com/GOTOGO7065650650" target="_blank" style="display: flex; align-items: center; gap: 0.5rem; color: inherit; text-decoration: none;">
-            <img src="https://cdn-icons-png.flaticon.com/512/5968/5968764.png" alt="Facebook" style="width: 1.25rem; height: 1.25rem; object-fit: contain;"/>
-          </a>
-          <a href="https://api.whatsapp.com/send?phone=917065650650&text=" target="_blank" style="display: flex; align-items: center; gap: 0.5rem; color: inherit; text-decoration: none;">
-            <img src="https://cdn-icons-png.flaticon.com/512/3670/3670051.png" alt="WhatsApp" style="width: 1.5rem; height: 1.5rem; object-fit: contain;"/>
-          </a>
-          <a href="https://www.instagram.com/gotogo.in" target="_blank" style="display: flex; align-items: center; gap: 0.5rem; color: inherit; text-decoration: none;">
-            <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram" style="width: 1.25rem; height: 1.25rem; object-fit: contain;"/>
-          </a>
-          <a href="https://www.linkedin.com/company/gotogo-in/" target="_blank" style="display: flex; align-items: center; gap: 0.5rem; color: inherit; text-decoration: none;">
-            <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="LinkedIn" style="width: 1.25rem; height: 1.25rem; object-fit: contain;"/>
-          </a>
+    <!-- Celebration Overlay Section -->
+    <div class="overlay" id="celebrationOverlay" style="display: none">
+      <div class="celebrate-card">
+        <!-- Close Button -->
+        <button class="close-btn" onclick="toggleOverlay()">✖</button>
+
+        <!-- Decorative flowers -->
+        <div class="flower flower-left"></div>
+        <div class="flower flower-right"></div>
+
+        <!-- Content -->
+        <div class="celebrate-content">
+          <h1>Thank You For Choosing Us!</h1>
+          <h2>Your Booking is Confirmed ✅</h2>
+          <p>
+            We can’t wait to see you! A confirmation has been sent to your
+            email.
+          </p>
+        </div>
+
+        <!-- Confetti -->
+        <!-- <div class="confetti"></div> -->
+      </div>
+    </div>
+
+    <!-- Styles -->
+    <style>
+      .overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.6);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+      }
+      .celebrate-card {
+        background: #111;
+        color: #fff;
+        text-align: center;
+        padding: 40px;
+        border-radius: 16px;
+        position: relative;
+        max-width: 600px;
+        width: 90%;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      }
+      .celebrate-card h1 {
+        color: #f4be30;
+        font-size: 2.5rem;
+        margin-bottom: 10px;
+      }
+      .celebrate-card h2 {
+        font-size: 1.5rem;
+        margin-bottom: 20px;
+      }
+      /* Close button */
+      .close-btn {
+        position: absolute;
+        top: 12px;
+        right: 12px;
+        background: #f4be30;
+        border: none;
+        border-radius: 50%;
+        width: 32px;
+        height: 32px;
+        font-size: 18px;
+        font-weight: bold;
+        cursor: pointer;
+        color: #111;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+      }
+      .close-btn:hover {
+        background: #ffcc00;
+      }
+
+      /* Flowers */
+      .flower {
+        position: absolute;
+        font-size: 2.5rem;
+        animation: floaty 4s ease-in-out infinite;
+      }
+      .flower-left {
+        top: -20px;
+        left: -20px;
+      }
+      .flower-right {
+        bottom: -20px;
+        right: -20px;
+      }
+      @keyframes floaty {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-10px);
+        }
+      }
+      /* Confetti */
+      .confetti span {
+        position: absolute;
+        width: 10px;
+        height: 16px;
+        background: gold;
+        opacity: 0.8;
+        animation: fall linear infinite;
+      }
+      @keyframes fall {
+        0% {
+          transform: translateY(-10vh) rotate(0);
+        }
+        100% {
+          transform: translateY(110vh) rotate(360deg);
+        }
+      }
+    </style>
+
+    <div class="loading-overlay" id="loadingOverlay">
+      <div class="spinner"></div>
+      <p>Confirming your booking...</p>
+      <p>Please wait, this may take a moment.</p>
+    </div>
+
+    <style>
+      /* Add this to your main <style> block */
+      .loading-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.75);
+        display: none; /* Hidden by default */
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        z-index: 10000; /* Make sure it's on top of everything */
+        color: white;
+        text-align: center;
+      }
+
+      .spinner {
+        width: 50px;
+        height: 50px;
+        border: 5px solid #f3f3f3;
+        border-top: 5px solid #f4be30; /* Your brand color */
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+        margin-bottom: 20px;
+      }
+
+      .loading-overlay p {
+        margin: 5px 0;
+        font-size: 1.1rem;
+      }
+
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+    </style>
+
+    <!-- footer  -->
+    <footer
+      style="
+        background-color: #000;
+        color: #d1d5db;
+        font-family: railway;
+        font-size: 0.875rem;
+      "
+      id="contact"
+    >
+      <div
+        style="
+          max-width: 1280px;
+          margin-left: auto;
+          margin-right: auto;
+          padding-left: 1.5rem;
+          padding-right: 1.5rem;
+          padding-top: 1.5rem;
+          padding-bottom: 1.5rem;
+        "
+      >
+        <div
+          style="
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1.5rem;
+          "
+          class="footer-css"
+        >
+          <div
+            style="
+              display: flex;
+              flex-direction: column;
+              align-items: flex-start;
+              text-align: left;
+              gap: 0.25rem;
+            "
+            class="footer-contact-css"
+          >
+            <a
+              href="tel:+917065650650"
+              style="
+                color: inherit;
+                text-decoration: none;
+                transition: color 0.15s;
+              "
+            >
+              📞 +91 7065 650 650
+            </a>
+            <a
+              href="mailto:care@gotogotravelsolutions.com"
+              style="
+                color: inherit;
+                text-decoration: none;
+                transition: color 0.15s;
+              "
+            >
+              ✉️ care@gotogotravelsolutions.com
+            </a>
+          </div>
+
+          <div
+            style="
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              text-align: center;
+            "
+          >
+            <h1
+              style="
+                font-size: 1.875rem;
+                font-weight: lighter;
+                color: #f4be30;
+                margin: 0;
+                padding: 0;
+              "
+            >
+              GoToGo Travel Solutions
+            </h1>
+            <p style="font-size: 0.75rem; color: #9ca3af; margin-top: 0.5rem">
+              © 2025 All Rights Reserved by GoToGo Travel Solutions LLP |
+              Website developed by
+              <a
+                href="https://infyplus.com"
+                style="font-weight: bold; color: blue"
+                target="_blank"
+              >
+                Infyplus Consulting</a
+              >
+            </p>
+            <!-- Navigation Links -->
+          <div class="footer-links" style="display: flex; justify-content: center; flex-wrap: wrap; gap: 1rem; margin-top: 0.5rem;">
+            <a href="/privacy-policy.html" style="color: #f4be30; text-decoration: none;">Privacy Policy</a>
+            <a href="/terms-and-conditions.html" style="color: #f4be30; text-decoration: none;">Terms & Conditions</a>
+            <a href="/refund-policy.html" style="color: #f4be30; text-decoration: none;">Refund & Cancellation Policy</a>
+            <a href="/safety-protocols.html" style="color: #f4be30; text-decoration: none;">Safety Protocols</a>
+          </div>
+          </div>
+
+          <div
+            style="
+              display: flex;
+              flex-direction: column;
+              align-items: flex-end;
+              text-align: right;
+              gap: 0.5rem;
+            "
+            class="footer-contact-css"
+          >
+            <span style="font-weight: 600; color: #fff">Connect with us</span>
+            <div
+              style="
+                display: flex;
+                align-items: center;
+                gap: 0.75rem;
+                margin-top: 0.25rem;
+              "
+            >
+              <a
+                href="https://www.facebook.com/GOTOGO7065650650"
+                target="_blank"
+                style="
+                  display: flex;
+                  align-items: center;
+                  gap: 0.5rem;
+                  color: inherit;
+                  text-decoration: none;
+                "
+              >
+                <img
+                  src="https://cdn-icons-png.flaticon.com/512/5968/5968764.png"
+                  alt="Facebook"
+                  style="width: 1.25rem; height: 1.25rem; object-fit: contain"
+                />
+              </a>
+              <a
+                href="https://api.whatsapp.com/send?phone=917065650650&text="
+                target="_blank"
+                style="
+                  display: flex;
+                  align-items: center;
+                  gap: 0.5rem;
+                  color: inherit;
+                  text-decoration: none;
+                "
+              >
+                <img
+                  src="https://cdn-icons-png.flaticon.com/512/3670/3670051.png"
+                  alt="WhatsApp"
+                  style="width: 1.5rem; height: 1.5rem; object-fit: contain"
+                />
+              </a>
+              <a
+                href="https://www.instagram.com/gotogo.in"
+                target="_blank"
+                style="
+                  display: flex;
+                  align-items: center;
+                  gap: 0.5rem;
+                  color: inherit;
+                  text-decoration: none;
+                "
+              >
+                <img
+                  src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png"
+                  alt="Instagram"
+                  style="width: 1.25rem; height: 1.25rem; object-fit: contain"
+                />
+              </a>
+              <a
+                href="https://www.linkedin.com/company/gotogo-in/"
+                target="_blank"
+                style="
+                  display: flex;
+                  align-items: center;
+                  gap: 0.5rem;
+                  color: inherit;
+                  text-decoration: none;
+                "
+              >
+                <img
+                  src="https://cdn-icons-png.flaticon.com/512/174/174857.png"
+                  alt="LinkedIn"
+                  style="width: 1.25rem; height: 1.25rem; object-fit: contain"
+                />
+              </a>
+            </div>
+          </div>
         </div>
       </div>
+    </footer>
+
+    <div
+      id="payment-help-popup"
+      style="
+        display: none;
+        position: fixed;
+        top: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: #fff;
+        padding: 15px 20px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        border-radius: 8px;
+        z-index: 2147483647 !important;
+        border-left: 5px solid #f37254;
+        font-family: Arial, sans-serif;
+        min-width: 300px;
+      "
+    >
+      <div
+        style="
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+        "
+      >
+        <div>
+          <h4 style="margin: 0 0 5px 0; color: #333">Payment Tip 💡</h4>
+          <p style="margin: 0; font-size: 13px; color: #555">
+            If the QR Code is not loading,<br />
+            please try <b>UPI ID</b> or <b>Card</b> option.
+          </p>
+        </div>
+        <button
+          onclick="closeHelpPopup()"
+          style="
+            background: none;
+            border: none;
+            font-size: 20px;
+            cursor: pointer;
+            color: #999;
+            margin-left: 10px;
+          "
+        >
+          &times;
+        </button>
+      </div>
     </div>
-  </div>
-</footer>
-<style>
-  @media (max-width: 768px) {
-  .footer-css{
-    flex-direction: column !important;
-    text-align: center !important;
-  }
-  .footer-contact-css{
-    align-items: center !important;
-    text-align: center !important;
-  }}
-</style>
+
+    <div
+      id="ticket-template"
+      class="hidden bg-white p-8 max-w-3xl mx-auto border-2 border-gray-800"
+      style="width: 800px; font-family: 'Inter', sans-serif; color: #000"
+    >
+      <div
+        class="flex justify-between items-center border-b-2 border-brand pb-4 mb-6"
+      >
+        <div>
+          <img
+            src="./assets/gotogo final logos/g2g corporate.png"
+            alt="GoToGo Logo"
+            class="h-16 w-auto"
+          />
+        </div>
+        <div class="text-right">
+          <h1 class="text-3xl font-bold text-gray-800">Shuttle To Agra</h1>
+          <p class="text-sm text-gray-600 font-bold mt-1" id="pdf-ticket-id">
+            GTG-PENDING
+          </p>
+          <p class="text-xs text-gray-500" id="pdf-booking-date">
+            Date: --/--/----
+          </p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-2 gap-8 mb-6">
+        <div>
+          <h3
+            class="text-brand font-bold uppercase tracking-wider mb-2 border-b border-gray-200"
+          >
+            Trip Details
+          </h3>
+          <div class="space-y-2 text-sm">
+            <p>
+              <span class="font-semibold">Package:</span>
+              <span id="pdf-package">Shuttle To Agra</span>
+            </p>
+            <p>
+              <span class="font-semibold">Tour Date:</span>
+              <span id="pdf-tour-date">--/--/----</span>
+            </p>
+            <p>
+              <span class="font-semibold">Pick Up:</span>
+              <span id="pdf-pickup">Agra</span>
+            </p>
+            <p>
+              <span class="font-semibold">Hotel:</span>
+              <span id="pdf-hotel">Hotel Name</span>
+            </p>
+          </div>
+        </div>
+        <div>
+          <h3
+            class="text-brand font-bold uppercase tracking-wider mb-2 border-b border-gray-200"
+          >
+            Lead Traveler
+          </h3>
+          <div class="space-y-2 text-sm">
+            <p>
+              <span class="font-semibold">Name:</span>
+              <span id="pdf-name">John Doe</span>
+            </p>
+            <p>
+              <span class="font-semibold">Contact:</span>
+              <span id="pdf-mobile">+91 0000000000</span>
+            </p>
+            <p>
+              <span class="font-semibold">Email:</span>
+              <span id="pdf-email">email@example.com</span>
+            </p>
+            <p>
+              <span class="font-semibold">Total Travelers:</span>
+              <span id="pdf-total-pax">2</span>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="mb-6">
+        <h3
+          class="text-brand font-bold uppercase tracking-wider mb-2 border-b border-gray-200"
+        >
+          Passenger List
+        </h3>
+        <table class="w-full text-sm text-left">
+          <thead>
+            <tr class="bg-gray-100">
+              <th class="p-2">Name</th>
+              <th class="p-2">Type</th>
+              <th class="p-2">Age</th>
+            </tr>
+          </thead>
+          <tbody id="pdf-traveler-list"></tbody>
+        </table>
+      </div>
+
+      <div
+        class="bg-gray-100 p-4 rounded-lg flex justify-between items-center mb-6"
+      >
+        <div>
+          <p class="text-sm text-gray-500">Payment Status</p>
+          <p
+            class="text-lg font-bold text-green-600 uppercase"
+            id="pdf-payment-status"
+          >
+            PAID
+          </p>
+        </div>
+        <div class="text-right">
+          <p class="text-sm text-gray-500">Total Amount</p>
+          <p class="text-xl font-bold text-gray-800" id="pdf-amount">
+            Rs. 0.00
+          </p>
+        </div>
+      </div>
+
+      <div class="text-center border-t-2 border-gray-200 pt-4">
+        <p class="text-sm text-gray-600 font-semibold">
+          Need Help? Call us at +91 7065 650 650
+        </p>
+        <p class="text-xs text-gray-500 mt-1">
+          Thank you for choosing GoToGo Travel Solutions. Have a safe journey!
+        </p>
+        <p class="text-xs text-gray-400 mt-2">
+          Ticket Valid for intended date of travel only.
+        </p>
+      </div>
+    </div>
+
+    <div
+      id="active-ticket-banner"
+      class="hidden fixed bottom-4 right-4 bg-white p-4 rounded-lg shadow-2xl border-l-4 border-brand z-50 max-w-sm"
+    >
+      <div class="flex justify-between items-start">
+        <div>
+          <h4 class="font-bold text-gray-800">Your Ticket is Ready!</h4>
+          <p class="text-xs text-gray-500 mb-2">Available for 24 hours</p>
+        </div>
+        <button
+          onclick="closeTicketBanner()"
+          class="text-gray-400 hover:text-red-500"
+        >
+          &times;
+        </button>
+      </div>
+      <button
+        onclick="downloadPDF()"
+        class="w-full bg-brand text-gray-900 font-bold py-2 px-4 rounded hover:bg-yellow-500 transition flex items-center justify-center gap-2"
+      >
+        <span>📄 Download PDF</span>
+      </button>
+    </div>
 
     <script>
-        // This function will be called to show/hide the celebration pop-up
-    function toggleOverlay() {
-        const overlay = document.getElementById('celebrationOverlay');
-        const isHidden = overlay.style.display === 'none';
+      // Function to close the popup
+      function closeHelpPopup() {
+        document.getElementById("payment-help-popup").style.display = "none";
+      }
+      setTimeout(function () {
+        // Check karein ki Razorpay abhi bhi khula hai ya nahi
+        // (Agar user ne band kar diya to popup mat dikhao)
+        var razorpayFrame = document.querySelector(".razorpay-checkout-frame");
 
-        if (isHidden) {
-            overlay.style.display = 'flex';
-        } else {
-            overlay.style.display = 'none';
-            // Redirect to the home page after closing the pop-up
-            window.location.href = 'cart.html';
+        if (razorpayFrame) {
+          document.getElementById("payment-help-popup").style.display = "block";
         }
-    }
+      }, 3000); // 3000 matlab 3 seconds baad
+    </script>
 
-    // Generate confetti for the pop-up
-    const confetti = document.querySelector('.confetti');
-    if (confetti) {
-        const colors = ['#f4be30', '#ff7aa2', '#6ad6ff', '#a6ffcb', '#ffd27a', '#b28cff'];
-        for (let i = 0; i < 40; i++) {
-            const span = document.createElement('span');
-            span.style.left = Math.random() * 100 + '%';
-            span.style.animationDuration = (2 + Math.random() * 3) + 's';
-            span.style.background = colors[Math.floor(Math.random() * colors.length)];
-            confetti.appendChild(span);
+    <style>
+      @media (max-width: 768px) {
+        .footer-css {
+          flex-direction: column !important;
+          text-align: center !important;
         }
-    }
-    document.addEventListener('DOMContentLoaded', () => {
-
-        // This function will run as soon as the page is ready.
-    const pingServer = async () => {
-        try {
-            // IMPORTANT: Replace this URL with your actual deployed Onrender server URL
-            await fetch('https://paymentgatewayforshuttletoagra.onrender.com/ping');
-            console.log('Ping sent to server to wake it up.');
-        } catch (error) {
-            // We don't show an alert here because it's a background task.
-            // If it fails, the user doesn't need to be interrupted.
-            console.error('Failed to ping server:', error);
+        .footer-contact-css {
+          align-items: center !important;
+          text-align: center !important;
         }
-    };
+      }
+    </style>
 
-     // Call the function to wake up the server.
-    pingServer();
+    <script>
+      // --- 1. CONFIGURATION & DATA ---
+      // ⚠️ Add your GitHub details here if not using Backend proxy for security
+      // Since you have a backend proxy now, these might not be needed in frontend
+      // unless you reverted to direct upload. Assuming Backend Proxy based on previous chat.
       
-        // --- INITIAL SETUP AND ELEMENT SELECTION ---
-        const cartDataString = localStorage.getItem('travelCart');
-        const cartSummaryContainer = document.getElementById('cart-summary-container');
-        const bookNowBtn = document.getElementById('book-now-btn');
-        const billingForm = document.getElementById('billing-form');
-        const requiredInputs = billingForm.querySelectorAll('input[required]');
-        const termsCheckbox = document.getElementById('terms');
+      const hotels = [
+        { name: "Courtyard By Marriott Gurugram Downtown", address: "Sector Road Plot No - 27 B, B Block, Sushant Lok - 1, Sector 27, Gurugram (Gurgaon) 122002 India" },
+        { name: "The Bristol Hotel", address: "Sector 28, DLF Phase 1 Near Sikanderpur Metro Station, Gurugram (Gurgaon) 122002 India" },
+        { name: "Regenta Suites Gurugram", address: "Element One Mall, Sector 49 Sohna Road, Gurugram (Gurgaon) 122018 India" },
+        { name: "Sunday Hotels And Residences", address: "M3M Broadway, Golf Course Ext Rd, Sector 71, Gurgaon, 122004 India" },
+        { name: "Radisson Hotel Gurugram Udyog Vihar", address: "Adjacent To Plot No. 406, Nh-8 Phase 3, Udyog Vihar, Gurugram (Gurgaon) 122016 India" },
+        { name: "Taj City Centre Gurugram", address: "Plot No.1, Sector 44, Gurugram (Gurgaon) 122004 India" },
+        { name: "DoubleTree by Hilton Gurugram Baani Square", address: "Baani Square Sector 50, Gurugram (Gurgaon) 122002 India" },
+        { name: "DoubleTree by Hilton Gurgaon-New Delhi NCR", address: "Golf Course Road Sector 56, Gurugram (Gurgaon) 122011 India" },
+        { name: "Radisson Blu Hotel, New Delhi Dwarka", address: "Plot 4, Dwarka City Centre, Sector 13 Sector 13, Dwarka, New Delhi 110075 India" },
+        { name: "Radisson Hotel Gurugram Sohna Road City Center", address: "Main Sohna Road Sector 49, Gurugram (Gurgaon) 122018 India" },
+        { name: "Radisson Hotel Sector 29 Gurugram", address: "Plot No. 360-362 Sector 29, Gurugram (Gurgaon) 122001 India" },
+        { name: "Crowne Plaza Gurgaon, an IHG hotel", address: "Site No.2 Sector 29 Opposite Signature Tower, Gurugram (Gurgaon) 122001 India" },
+        { name: "The Pllazio Hotel", address: "292 - 296, Sector 29, Gurugram (Gurgaon) 122001 India" },
+        { name: "Pride Plaza Hotel Aerocity New Delhi", address: "5 - A Hospitality District Aerocity, New Delhi 110037 India" },
+        { name: "Ibis Gurgaon Golf Course Road", address: "Golf Course Rd Block 1 Sector 53, Gurugram (Gurgaon) 122002 India" },
+        { name: "Anya Hotel, Gurgaon", address: "42 Golf Course Road DLF Phase V, Gurugram (Gurgaon) 122002 India" },
+        { name: "Nemesia City Center - Gurugram", address: "Plot No. 358 & 359 City Center, Gurugram (Gurgaon) 122001 India" },
+        // { name: "Other", address: "" } 
+      ];
 
-        // --- CART DISPLAY LOGIC ---
-        if (!cartDataString) {
-            // Cart is empty, the default message will show.
-            // Disable the button if the cart is empty to prevent errors.
-            bookNowBtn.disabled = true;
+      // --- 2. TICKET GENERATION UTILS ---
+      // function generateTicketNumber() {
+      //   const now = new Date();
+      //   const day = String(now.getDate()).padStart(2, "0");
+      //   const month = String(now.getMonth() + 1).padStart(2, "0");
+      //   const year = String(now.getFullYear()).slice(-2);
+      //   const hours = String(now.getHours()).padStart(2, "0");
+      //   const minutes = String(now.getMinutes()).padStart(2, "0");
+      //   const random = Math.floor(1000 + Math.random() * 9000);
+      //   return `GTG${day}${month}${year}${hours}${minutes}${random}`;
+      // }
+
+      // --- 2. TICKET GENERATION UTILS ---
+function generateTicketNumber() {
+    const now = new Date();
+    
+    // Time Components
+    let hours = now.getHours();
+    const minutes = String(now.getMinutes()).padStart(2, "0");
+    const ampm = hours >= 12 ? "PM" : "AM";
+    
+    // Convert to 12-hour format for "currenttime" part if needed, 
+    // or use 24-hour. Based on format "0435" implies HHMM.
+    hours = hours % 12;
+    hours = hours ? hours : 12; // the hour '0' should be '12'
+    const strTime = String(hours).padStart(2, "0") + minutes;
+
+    // Random 3 Digit Number (000 - 999)
+    const random = Math.floor(Math.random() * 1000).toString().padStart(3, "0");
+
+    // Format: G2G-S2A-{PM/AM}-{currenttime}-{random3digits}
+    return `G2G-S2A-${ampm}-${strTime}-${random}`;
+}
+
+      function saveBookingSession(bookingData) {
+        // Remove Base64 strings before saving to local storage to save space
+        if(bookingData.travelers) {
+            bookingData.travelers = bookingData.travelers.map(t => {
+                const { passportFileBase64, ...rest } = t;
+                return rest;
+            });
+        }
+
+        const sessionData = {
+          data: bookingData,
+          timestamp: new Date().getTime(),
+        };
+        localStorage.setItem("activeTicket", JSON.stringify(sessionData));
+        renderTicketData(bookingData);
+      }
+
+      function checkActiveTicket() {
+        const stored = localStorage.getItem("activeTicket");
+        if (!stored) return;
+
+        const session = JSON.parse(stored);
+        const now = new Date().getTime();
+        const twentyFourHours = 24 * 60 * 60 * 1000;
+
+        if (now - session.timestamp > twentyFourHours) {
+          localStorage.removeItem("activeTicket");
+        } else {
+          renderTicketData(session.data);
+          document.getElementById("active-ticket-banner").classList.remove("hidden");
+        }
+      }
+
+      function renderTicketData(data) {
+        if (!data || !data.billing || !data.cart) return;
+
+        document.getElementById("pdf-ticket-id").innerText = data.ticketNumber;
+        document.getElementById("pdf-booking-date").innerText = "Booking Date: " + new Date().toLocaleDateString();
+        document.getElementById("pdf-package").innerText = data.cart.packageName || "Shuttle Service";
+        document.getElementById("pdf-tour-date").innerText = data.billing.tourDate;
+        document.getElementById("pdf-pickup").innerText = data.billing.pickupAddress || data.billing.hotelAddress;
+        document.getElementById("pdf-hotel").innerText = data.billing.hotelName;
+        document.getElementById("pdf-name").innerText = data.billing.firstName + " " + data.billing.lastName;
+        document.getElementById("pdf-mobile").innerText = data.billing.mobile;
+        document.getElementById("pdf-email").innerText = data.billing.email;
+
+        const totalPax = (parseInt(data.cart.adults) || 0) + (parseInt(data.cart.children) || 0);
+        document.getElementById("pdf-total-pax").innerText = totalPax;
+        document.getElementById("pdf-amount").innerText = "Rs. " + (data.amountPaid || data.cart.totalPrice);
+        document.getElementById("pdf-payment-status").innerText = data.paymentMethod === "cash" ? "PAY ON ARRIVAL" : "PAID ONLINE";
+
+        const listBody = document.getElementById("pdf-traveler-list");
+        listBody.innerHTML = "";
+        if (data.travelers) {
+          data.travelers.forEach((pax) => {
+            const row = `
+                    <tr>
+                        <td style="padding: 8px; border-bottom: 1px solid #eee;">${pax.name}</td>
+                        <td style="padding: 8px; border-bottom: 1px solid #eee;">${pax.type}</td>
+                        <td style="padding: 8px; border-bottom: 1px solid #eee;">${pax.age}</td>
+                    </tr>`;
+            listBody.innerHTML += row;
+          });
+        }
+      }
+
+      // --- 3. PDF DOWNLOAD & UI ---
+      async function downloadPDF() {
+        const { jsPDF } = window.jspdf;
+        const ticketElement = document.getElementById("ticket-template");
+        ticketElement.classList.remove("hidden");
+        try {
+          const canvas = await html2canvas(ticketElement, { scale: 2 });
+          const imgData = canvas.toDataURL("image/png");
+          const pdf = new jsPDF("p", "mm", "a4");
+          const pdfWidth = pdf.internal.pageSize.getWidth();
+          const pdfHeight = (canvas.height * pdfWidth) / canvas.width;
+          pdf.addImage(imgData, "PNG", 0, 0, pdfWidth, pdfHeight);
+          const ticketID = document.getElementById("pdf-ticket-id").innerText;
+          pdf.save(`GoToGo_Ticket_${ticketID}.pdf`);
+        } catch (err) {
+          console.error("PDF Gen Error", err);
+          alert("Error generating ticket. Please try again.");
+        } finally {
+          ticketElement.classList.add("hidden");
+        }
+      }
+
+function toggleOverlay() {
+        const overlay = document.getElementById("celebrationOverlay");
+        const isHidden = overlay.style.display === "none";
+        
+        if (isHidden) {
+          overlay.style.display = "flex";
+          const contentDiv = overlay.querySelector(".celebrate-content");
+          
+          if (!document.getElementById("overlay-download-btn")) {
+            const btn = document.createElement("button");
+            btn.id = "overlay-download-btn";
+            btn.innerText = "Download Ticket Now 📄";
+            btn.style.cssText = "margin-top: 20px; background-color: #f4be30; color: #000; font-weight: bold; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; font-size: 16px;";
+            
+            btn.onclick = async function () {
+              // 1. Pehle Ticket Download hogi
+              await downloadPDF(); 
+              
+              // 2. Phir 2 Second ka wait (2000 ms) aur fir Redirect
+              setTimeout(function() {
+                  window.location.href = "/shuttletoagra.html";
+              }, 2000);
+            };
+            
+            contentDiv.appendChild(btn);
+          }
+        } else {
+          overlay.style.display = "none";
+          // Agar cross button dabaya to bhi 2 second wait karke bhej sakte hain, 
+          // ya turant bhej dein (yahan maine turant rakha hai safe side ke liye)
+          window.location.href = "/shuttletoagra.html";
+        }
+      }
+      
+      // --- FILE SIZE VALIDATOR (Immediate Check) ---
+function validateFileSelection(input) {
+    const file = input.files[0];
+    if (!file) return;
+
+    const fileSizeMB = file.size / (1024 * 1024); // Size in MB
+
+    // 1. PDF Check (Strict 2MB Limit)
+    if (file.type === 'application/pdf') {
+        if (fileSizeMB > 2) {
+            alert("⚠️ File too large!\nPDF size must be less than 2MB.\nPlease compress it or choose a smaller file.");
+            input.value = ""; // File remove kar do
             return;
         }
+    } 
+    // 2. Image Check (10MB Limit - Safety for Browser)
+    // Note: Hum images compress karte hain, lekin 10MB se badi file browser ko slow kar sakti hai.
+    else if (file.type.startsWith('image/')) {
+        if (fileSizeMB > 10) {
+            alert("⚠️ Image too large!\nPlease upload an image smaller than 10MB.");
+            input.value = ""; // File remove kar do
+            return;
+        }
+    }
+}
 
-        const cartData = JSON.parse(cartDataString);
-        const INR_RATE = 82.5;
+      // --- 4. VALIDATION HELPERS ---
+      function validateAdultAge(inputElement) {
+        if (inputElement.value.length > 2) inputElement.value = inputElement.value.slice(0, 2);
+        const age = parseInt(inputElement.value, 10);
+        if (inputElement.value.length === 2 && age < 12) {
+          alert("An adult's age cannot be less than 12!");
+          inputElement.value = "";
+        }
+      }
 
-        // Populate Cart Summary
-        let summaryHTML = `
-            <div class="flex justify-between items-center font-semibold">
-                <p class="text-gray-800">${cartData.packageName}</p>
+      function validateChildAge(inputElement) {
+        if (!inputElement.value) return;
+        setTimeout(() => {
+          const age = parseInt(inputElement.value, 10);
+          if (age < 5 || age > 11) {
+            alert("Child age must be between 5 and 11!");
+            inputElement.value = "";
+          }
+        }, 1000);
+      }
+
+      // --- 5. FILE UPLOAD HELPER ---
+      // const toBase64 = file => new Promise((resolve, reject) => {
+      //   const reader = new FileReader();
+      //   reader.readAsDataURL(file);
+      //   reader.onload = () => {
+      //       const base64Content = reader.result.split(',')[1];
+      //       resolve(base64Content);
+      //   };
+      //   reader.onerror = error => reject(error);
+      // });
+
+
+      // --- SMART FILE PROCESSOR (Compresses Images) ---
+const processFile = (file) => new Promise((resolve, reject) => {
+    // Agar PDF hai, toh direct Base64 me convert karo (No compression)
+    if (file.type === 'application/pdf') {
+        if (file.size > 2 * 1024 * 1024) { // 2MB Limit for PDF
+            reject(new Error("PDF file is too large. Max 2MB allowed."));
+            return;
+        }
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => resolve(reader.result.split(',')[1]);
+        reader.onerror = (err) => reject(err);
+    } 
+    // Agar Image hai, toh COMPRESS karo
+    else if (file.type.startsWith('image/')) {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = (event) => {
+            const img = new Image();
+            img.src = event.target.result;
+            img.onload = () => {
+                const canvas = document.createElement('canvas');
                 
-                <p class="text-gray-800">$${cartData.totalPrice}</p>
-            </div>
-            <div class="border-t my-4">
-            <p class="text-gray-800">
-  ${cartData.optionTitle.replace(/^Option\s*\d+\s*:/i, "Facilities :")}
-</p>
+                // Resize Logic: Max width 1000px rakhhenge
+                let width = img.width;
+                let height = img.height;
+                const maxWidth = 1000;
+                
+                if (width > maxWidth) {
+                    height = Math.round((height * maxWidth) / width);
+                    width = maxWidth;
+                }
 
-            <div class="text-sm text-gray-500 space-y-1 pl-2">
-        `;
-        if (cartData.adults > 0) {
-            summaryHTML += `<p>${cartData.adults} Adult x $${cartData.pricePerAdult.toFixed(2)}</p>`;
+                canvas.width = width;
+                canvas.height = height;
+                
+                const ctx = canvas.getContext('2d');
+                ctx.drawImage(img, 0, 0, width, height);
+                
+                // Compress to JPEG with 0.7 quality (Best balance)
+                const dataUrl = canvas.toDataURL('image/jpeg', 0.7); 
+                
+                // Result se "data:image..." hatao
+                resolve(dataUrl.split(',')[1]);
+            };
+        };
+        reader.onerror = (err) => reject(err);
+    } else {
+        reject(new Error("Invalid file type. Only PDF, JPG, PNG allowed."));
+    }
+});
+
+      // --- MAIN EXECUTION ---
+      document.addEventListener("DOMContentLoaded", () => {
+        checkActiveTicket();
+
+        // Server Ping
+        const pingServer = async () => {
+          try { await fetch("https://paymentgatewayforshuttletoagra.onrender.com/ping"); } 
+          catch (error) { console.error("Failed to ping server:", error); }
+        };
+        pingServer();
+
+        // === SEARCHABLE HOTEL LOGIC ===
+        const searchInput = document.getElementById('hotel-name');
+        const dropdownList = document.getElementById('hotel-list-dropdown');
+        const addressInput = document.getElementById('hotel-address');
+
+        if (searchInput && dropdownList && addressInput) {
+            function renderOptions(filterText = '') {
+                dropdownList.innerHTML = '';
+                const lowerFilter = filterText.toLowerCase();
+                const filtered = hotels.filter(h => h.name.toLowerCase().includes(lowerFilter));
+
+                if (filtered.length === 0) {
+                    dropdownList.innerHTML = `<li class="p-2 text-sm text-gray-500 cursor-default">No hotel found. Select "Other" to type manually.</li>`;
+                    addOptionToDom({ name: "Other", address: "" });
+                } else {
+                    filtered.forEach(hotel => addOptionToDom(hotel));
+                    // Ensure 'Other' is always available at bottom
+                    if(!filtered.find(h => h.name === 'Other')) {
+                         addOptionToDom({ name: "Other", address: "" });
+                    }
+                }
+                dropdownList.classList.remove('hidden');
+            }
+
+            function addOptionToDom(hotel) {
+                const li = document.createElement('li');
+                li.textContent = hotel.name;
+                li.className = "p-2 hover:bg-yellow-50 cursor-pointer text-sm text-gray-700 border-b border-gray-100 last:border-0";
+                li.addEventListener('click', () => { selectHotel(hotel); });
+                dropdownList.appendChild(li);
+            }
+
+            function selectHotel(hotel) {
+                searchInput.value = hotel.name;
+                dropdownList.classList.add('hidden');
+                if (hotel.name === "Other") {
+                    addressInput.value = "";
+                    addressInput.removeAttribute('readonly');
+                    addressInput.classList.remove('bg-gray-100');
+                    addressInput.classList.add('bg-white');
+                    addressInput.placeholder = "Please enter hotel address manually...";
+                    addressInput.focus();
+                } else {
+                    addressInput.value = hotel.address;
+                    addressInput.setAttribute('readonly', true);
+                    addressInput.classList.add('bg-gray-100');
+                    addressInput.classList.remove('bg-white');
+                }
+                searchInput.classList.remove('form-error');
+                addressInput.classList.remove('form-error');
+            }
+
+            searchInput.addEventListener('input', (e) => renderOptions(e.target.value));
+            searchInput.addEventListener('click', () => renderOptions(searchInput.value));
+            document.addEventListener('click', (e) => {
+                if (!searchInput.contains(e.target) && !dropdownList.contains(e.target)) {
+                    dropdownList.classList.add('hidden');
+                }
+            });
         }
-        if (cartData.children > 0) {
-            summaryHTML += `<p>${cartData.children} Child x $${cartData.childPrice.toFixed(2)}</p>`;
+
+        // === DATE LOGIC (NO FRIDAY, 8PM CUTOFF, 9 MONTH MAX) ===
+        const tourDateInput = document.getElementById('tour-date');
+        if (tourDateInput) {
+           const now = new Date();
+           const cutoffHour = 20; // 8:00 PM
+           
+           // Calculate Min Date
+           const minDateObj = new Date(now);
+           if (now.getHours() >= cutoffHour) {
+               minDateObj.setDate(now.getDate() + 2); // After 8 PM -> Day after tomorrow
+           } else {
+               minDateObj.setDate(now.getDate() + 1); // Before 8 PM -> Tomorrow
+           }
+
+           const minYYYY = minDateObj.getFullYear();
+           const minMM = String(minDateObj.getMonth() + 1).padStart(2, '0');
+           const minDD = String(minDateObj.getDate()).padStart(2, '0');
+           tourDateInput.setAttribute('min', `${minYYYY}-${minMM}-${minDD}`);
+
+           // Calculate Max Date
+           const maxDateObj = new Date(now);
+           maxDateObj.setMonth(now.getMonth() + 9);
+           const maxYYYY = maxDateObj.getFullYear();
+           const maxMM = String(maxDateObj.getMonth() + 1).padStart(2, '0');
+           const maxDD = String(maxDateObj.getDate()).padStart(2, '0');
+           tourDateInput.setAttribute('max', `${maxYYYY}-${maxMM}-${maxDD}`);
+
+           // Listener
+           tourDateInput.addEventListener('input', function() {
+               if (!this.value) return;
+               const selectedDate = new Date(this.value);
+               const dayOfWeek = selectedDate.getDay(); 
+               
+               // Friday Check
+               if (dayOfWeek === 5) { 
+                   alert("⚠️ The Taj Mahal is closed on Fridays. Please select another date.");
+                   this.value = ''; 
+                   return;
+               }
+
+               // 8 PM Cutoff Message Check
+               const checkNow = new Date();
+               if (checkNow.getHours() >= cutoffHour) {
+                   const tomorrow = new Date(checkNow);
+                   tomorrow.setDate(checkNow.getDate() + 1);
+                   // Check if user selected tomorrow
+                   if (selectedDate.getDate() === tomorrow.getDate() && 
+                       selectedDate.getMonth() === tomorrow.getMonth() && 
+                       selectedDate.getFullYear() === tomorrow.getFullYear()) {
+                       alert("Not able to book for tomorrow, not to worry, please call on +91 7065 650 650, our team will assist you.");
+                       this.value = ''; 
+                   }
+               }
+           });
+       }
+
+        // === CART & UI SETUP ===
+        const cartDataString = localStorage.getItem("travelCart");
+        const cartSummaryContainer = document.getElementById("cart-summary-container");
+        const bookNowBtn = document.getElementById("book-now-btn");
+        const billingForm = document.getElementById("billing-form");
+        const loadingOverlay = document.getElementById("loadingOverlay");
+
+        if (!cartDataString) {
+          bookNowBtn.disabled = true;
+          bookNowBtn.textContent = "Your cart is empty";
+          return;
         }
-        if (cartData.infants > 0) {
-            summaryHTML += `<p>${cartData.infants} Infant x $0.00</p>`;
+
+        bookNowBtn.disabled = false;
+        const cartData = JSON.parse(cartDataString);
+        const INR_RATE = 1;
+
+        // Render Cart Summary
+        let summaryHTML = ``;
+        if (cartData.totalSavings && cartData.totalSavings > 0) {
+          summaryHTML += `
+               <div class="mb-4 bg-yellow-50 border border-[#f4be30] rounded-lg p-3 flex items-start gap-3">
+                   <div class="text-[#f4be30] text-xl mt-0.5"><i class="fa-solid fa-gift"></i></div>
+                   <div>
+                       <h4 class="font-bold text-gray-800 text-sm">Great Choice! 🎉</h4>
+                       <p class="text-sm text-gray-600">You saved <span class="font-bold text-green-600">$${Number(cartData.totalSavings).toFixed(2)}</span> on this booking!</p>
+                   </div>
+               </div>`;
         }
         summaryHTML += `
-            </div>
-            <div class="border-t my-4"></div>
-            <div class="flex justify-between items-center font-bold text-lg">
-                <p>Total (USD)</p>
-                <p>$${cartData.totalPrice}/-</p>
-            </div>
-            <div class="flex justify-between items-center font-semibold text-md bg-gray-100 p-2 rounded-md">
-                <p>Amount In (INR)</p>
-                <p>Rs. ${(cartData.totalPrice * INR_RATE).toLocaleString('en-IN')}/-</p>
-            </div>
+           <div class="flex justify-between items-center font-semibold">
+               <p class="text-gray-800">${cartData.packageName}</p>
+               <p class="text-gray-800">$${cartData.totalPrice}</p>
+           </div>
+           <div class="border-t my-4">
+           <p class="text-gray-800">${cartData.optionTitle.replace(/^Option\s*\d+\s*:/i,"Facilities :")}</p>
+           <div class="text-sm text-gray-500 space-y-1 pl-2">
+        `;
+        if (cartData.adults > 0) summaryHTML += `<p>${cartData.adults} Adult x $${cartData.pricePerAdult.toFixed(2)}</p>`;
+        if (cartData.children > 0) summaryHTML += `<p>${cartData.children} Child x $${cartData.childPrice.toFixed(2)}</p>`;
+        if (cartData.infants > 0) summaryHTML += `<p>${cartData.infants} Infant x $0.00</p>`;
+        summaryHTML += `
+           </div>
+           <div class="border-t my-4"></div>
+           <div class="flex justify-between items-center font-bold text-lg">
+               <p>Total (USD)</p>
+               <p>$${cartData.totalPrice}/-</p>
+           </div>
+           <div class="flex justify-between items-center font-semibold text-md bg-gray-100 p-2 rounded-md mt-2">
+               <p>Amount In (INR)</p>
+               <p>Rs. ${(cartData.totalPrice * INR_RATE).toLocaleString("en-IN")}/-</p>
+           </div>
         `;
         cartSummaryContainer.innerHTML = summaryHTML;
 
-        // Populate Traveler Information
-        // --- Populate Traveler Information ---
-// Replace the old block with this one
-const adultContainer = document.getElementById('adult-info-container');
-const childSection = document.getElementById('child-info-section');
-const childContainer = document.getElementById('child-info-container');
+        // Render Traveler Inputs
+        // const adultContainer = document.getElementById("adult-info-container");
+        // const childSection = document.getElementById("child-info-section");
+        // const childContainer = document.getElementById("child-info-container");
 
-if (cartData.adults > 0) {
-    let adultInfoHTML = `<h3 class="text-lg font-semibold text-gray-700 mb-4">Adult:</h3>`;
-    for (let i = 1; i <= cartData.adults; i++) {
-        adultInfoHTML += `
-            <div class="grid grid-cols-5 gap-4 items-center">
-                <label class="col-span-1 text-sm text-gray-600">#${i}</label>
+        // if (cartData.adults > 0) {
+        //    let adultInfoHTML = `<h3 class="text-lg font-semibold text-gray-700 mb-4">Adult (12-99):</h3>`;
+        //    for (let i = 1; i <= cartData.adults; i++) {
+        //        adultInfoHTML += `
+        //            <div class="border p-4 rounded-md mb-4 bg-gray-50 relative">
+        //                <label class="absolute -top-3 left-3 bg-gray-50 px-2 text-xs font-bold text-brand">Adult #${i}</label>
+                       
+        //                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        //                    <div>
+        //                        <label class="block text-xs text-gray-500 mb-1">Full Name</label>
+        //                        <input type="text" id="adult-name-${i}" placeholder="Name as on Passport" class="w-full border-gray-300 rounded-md shadow-sm text-sm p-2" required>
+        //                    </div>
+        //                    <div>
+        //                        <label class="block text-xs text-gray-500 mb-1">Age</label>
+        //                        <input type="number" id="adult-age-${i}" placeholder="Age" class="w-full border-gray-300 rounded-md shadow-sm text-sm p-2" min="12" max="99" oninput="validateAdultAge(this)" required>
+        //                    </div>
 
-                <input type="text" id="adult-name-${i}" placeholder="Adult #${i} Name" class="col-span-2 w-full border-gray-300 rounded-md shadow-sm text-sm">
-                <input type="number" id="adult-age-${i}" placeholder="Age in years" class="col-span-2 w-full border-gray-300 rounded-md shadow-sm text-sm">
-            </div>`;
-    }
-    adultContainer.innerHTML = adultInfoHTML;
-}
+        //                    <div>
+        //                        <label class="block text-xs text-gray-500 mb-1">Passport Number</label>
+        //                        <input type="text" id="adult-passport-${i}" placeholder="Passport No." class="w-full border-gray-300 rounded-md shadow-sm text-sm p-2 uppercase" required>
+        //                    </div>
+                           
+        //                    <div>
+        //                        <label class="block text-xs text-gray-500 mb-1">Passport Copy (PDF < 2MB / IMG)</label>
+        //                        <input 
+        //                            type="file" 
+        //                            id="adult-file-${i}" 
+        //                            accept="image/*,application/pdf" 
+        //                            onchange="validateFileSelection(this)" 
+        //                            class="w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-yellow-50 file:text-yellow-700 hover:file:bg-yellow-100" 
+        //                            required
+        //                        >
+        //                    </div>
+        //                </div>
+        //            </div>`;
+        //    }
+        //    adultContainer.innerHTML = adultInfoHTML;
+        // }
 
-if (cartData.children > 0) {
-    childSection.classList.remove('hidden');
-    let childInfoHTML = '';
-    for (let i = 1; i <= cartData.children; i++) {
-        childInfoHTML += `
-            <div class="grid grid-cols-5 gap-4 items-center">
-                <label class="col-span-1 text-sm text-gray-600">#${i}</label>
+        // if (cartData.children > 0) {
+        //   childSection.classList.remove("hidden");
+        //   let childInfoHTML = "";
+        //   for (let i = 1; i <= cartData.children; i++) {
+        //     childInfoHTML += `
+        //            <div class="grid grid-cols-5 gap-4 items-center">
+        //                <label class="col-span-1 text-sm text-gray-600">#${i}</label>
+        //                <input type="text" id="child-name-${i}" placeholder="Child #${i} Name" class="col-span-2 w-full border-gray-300 rounded-md shadow-sm text-sm">
+        //                <input type="number" id="child-age-${i}" placeholder="Age in years" class="col-span-2 w-full border-gray-300 rounded-md shadow-sm text-sm" min="5" max="11" oninput="validateChildAge(this)" required>
+        //            </div>`;
+        //   }
+        //   childContainer.innerHTML = childInfoHTML;
+        // }
 
-                <input type="text" id="child-name-${i}" placeholder="Child #${i} Name" class="col-span-2 w-full border-gray-300 rounded-md shadow-sm text-sm">
-                <input type="number" id="child-age-${i}" placeholder="Age in years" class="col-span-2 w-full border-gray-300 rounded-md shadow-sm text-sm">
-            </div>`;
-    }
-    childContainer.innerHTML = childInfoHTML;
-}
+        // Render Traveler Inputs
+        const adultContainer = document.getElementById("adult-info-container");
+        const childSection = document.getElementById("child-info-section"); // Ensure this ID exists in HTML or create dynamically
+        const childContainer = document.getElementById("child-info-container");
 
-        // --- FORM VALIDATION LOGIC ---
-        const validateForm = () => {
-            let allValid = true;
-            requiredInputs.forEach(input => {
-                if (!input.value.trim()) {
-                    allValid = false;
+        // Note: HTML me Infant Container bhi hona chahiye, agar nahi hai to hum JS se append karenge
+        let infantSection = document.getElementById("infant-info-section");
+        if (!infantSection && cartData.infants > 0) {
+            // Create Infant Section dynamically if not present
+            const section = document.createElement("div");
+            section.id = "infant-info-section";
+            section.className = "mt-6";
+            section.innerHTML = `<h3 class="text-lg font-semibold text-gray-700 mb-4 border-t pt-4">Infants (0-2 Years):</h3><div id="infant-info-container" class="space-y-4"></div>`;
+            document.getElementById("traveler-info-section").appendChild(section);
+        }
+        const infantContainer = document.getElementById("infant-info-container");
+
+        // --- ADULT SECTION (File Upload Disabled) ---
+        if (cartData.adults > 0) {
+           let adultInfoHTML = `<h3 class="text-lg font-semibold text-gray-700 mb-4">Adult (12-99 Years):</h3>`;
+           for (let i = 1; i <= cartData.adults; i++) {
+               adultInfoHTML += `
+                   <div class="border p-4 rounded-md mb-4 bg-gray-50 relative">
+                       <label class="absolute -top-3 left-3 bg-gray-50 px-2 text-xs font-bold text-brand">Adult #${i}</label>
+                       
+                       <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                           <div>
+                               <label class="block text-xs text-gray-500 mb-1">Full Name *</label>
+                               <input type="text" id="adult-name-${i}" placeholder="Name as on Passport" class="w-full border-gray-300 rounded-md shadow-sm text-sm p-2" required>
+                           </div>
+                           <div>
+                               <label class="block text-xs text-gray-500 mb-1">Age *</label>
+                               <input type="number" id="adult-age-${i}" placeholder="Age" class="w-full border-gray-300 rounded-md shadow-sm text-sm p-2" 
+                               min="12" max="99" step="1" 
+                               onkeypress="return event.charCode >= 48 && event.charCode <= 57" 
+                               oninput="validateAdultAge(this)" required>
+                           </div>
+
+                           <div class="md:col-span-2">
+                               <label class="block text-xs text-gray-500 mb-1">Passport Number *</label>
+                               <input type="text" id="adult-passport-${i}" placeholder="Passport No." class="w-full border-gray-300 rounded-md shadow-sm text-sm p-2 uppercase" required>
+                           </div>
+                           
+                           </div>
+                   </div>`;
+           }
+           adultContainer.innerHTML = adultInfoHTML;
+        }
+
+        // --- CHILD SECTION (Added Passport) ---
+        if (cartData.children > 0) {
+          childSection.classList.remove("hidden");
+          let childInfoHTML = "";
+          for (let i = 1; i <= cartData.children; i++) {
+            childInfoHTML += `
+                   <div class="border p-4 rounded-md mb-4 bg-gray-50 relative">
+                       <label class="absolute -top-3 left-3 bg-gray-50 px-2 text-xs font-bold text-brand">Child #${i}</label>
+                       <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                           <div>
+                               <label class="block text-xs text-gray-500 mb-1">Full Name *</label>
+                               <input type="text" id="child-name-${i}" placeholder="Child Name" class="w-full border-gray-300 rounded-md shadow-sm text-sm p-2" required>
+                           </div>
+                           <div>
+                               <label class="block text-xs text-gray-500 mb-1">Age (5-11) *</label>
+                               <input type="number" id="child-age-${i}" placeholder="Age" class="w-full border-gray-300 rounded-md shadow-sm text-sm p-2" 
+                               min="5" max="11" step="1"
+                               onkeypress="return event.charCode >= 48 && event.charCode <= 57"
+                               oninput="validateChildAge(this)" required>
+                           </div>
+                           <div class="md:col-span-2">
+                               <label class="block text-xs text-gray-500 mb-1">Passport Number *</label>
+                               <input type="text" id="child-passport-${i}" placeholder="Passport No." class="w-full border-gray-300 rounded-md shadow-sm text-sm p-2 uppercase" required>
+                           </div>
+                       </div>
+                   </div>`;
+          }
+          childContainer.innerHTML = childInfoHTML;
+        }
+
+        // --- INFANT SECTION (New) ---
+        if (cartData.infants > 0 && infantContainer) {
+          let infantInfoHTML = "";
+          for (let i = 1; i <= cartData.infants; i++) {
+            infantInfoHTML += `
+                   <div class="border p-4 rounded-md mb-4 bg-gray-50 relative">
+                       <label class="absolute -top-3 left-3 bg-gray-50 px-2 text-xs font-bold text-brand">Infant #${i}</label>
+                       <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                           <div>
+                               <label class="block text-xs text-gray-500 mb-1">Full Name *</label>
+                               <input type="text" id="infant-name-${i}" placeholder="Infant Name" class="w-full border-gray-300 rounded-md shadow-sm text-sm p-2" required>
+                           </div>
+                           <div>
+                               <label class="block text-xs text-gray-500 mb-1">Age (0-2) *</label>
+                               <input type="number" id="infant-age-${i}" placeholder="Age" class="w-full border-gray-300 rounded-md shadow-sm text-sm p-2" 
+                               min="0" max="2" step="1"
+                               onkeypress="return event.charCode >= 48 && event.charCode <= 57"
+                               required>
+                           </div>
+                           <div class="md:col-span-2">
+                               <label class="block text-xs text-gray-500 mb-1">Passport Number *</label>
+                               <input type="text" id="infant-passport-${i}" placeholder="Passport No." class="w-full border-gray-300 rounded-md shadow-sm text-sm p-2 uppercase" required>
+                           </div>
+                       </div>
+                   </div>`;
+          }
+          infantContainer.innerHTML = infantInfoHTML;
+        }
+
+        // --- PAYMENT & BOOKING LOGIC ---
+        function initiateRazorpayPayment(order, travelersData) {
+          const ticketID = generateTicketNumber();
+          const firstName = document.getElementById("first-name").value;
+          const lastName = document.getElementById("last-name").value;
+          const email = document.getElementById("email").value;
+          const mobile = document.getElementById("mobile").value;
+
+
+          const options = {
+            key: "rzp_live_GguLSrEps04lrr",
+            amount: order.amount,
+            currency: order.currency,
+            name: "GoToGo Travel Solutions",
+            description: cartData.packageName || cartData.optionTitle,
+            image: "./assets/gotogo final logos/g2g shuttle.png",
+            order_id: order.id,
+            handler: function (response) {
+              verifyPayment(response, ticketID, travelersData);
+            },
+            prefill: {
+              name: `${firstName} ${lastName}`,
+              email: email,
+              contact: mobile,
+            },
+            notes: { address: document.getElementById("hotel-address").value },
+            theme: { color: "#f4be30" },
+            
+            // --- NAYA CODE: Yaha fix kiya gaya hai ---
+            modal: {
+                ondismiss: function() {
+                    // Jab user popup close karega, ye chalega
+                    document.getElementById("loadingOverlay").style.display = "none";
+                    const btn = document.getElementById("book-now-btn");
+                    btn.disabled = false;
+                    btn.textContent = "Book Now";
                 }
-            });
-            if (!termsCheckbox.checked) {
-                allValid = false;
             }
-            bookNowBtn.disabled = !allValid;
-        };
+            // ----------------------------------------
+          };
 
-        const fieldsToWatch = [...requiredInputs, termsCheckbox];
-        fieldsToWatch.forEach(field => {
-            field.addEventListener('input', validateForm);
-            field.addEventListener('change', validateForm);
-        });
-
-        // Initial validation check on page load
-        validateForm();
-
-
-        // --- RAZORPAY PAYMENT FLOW ---
-        
-        // This function opens the Razorpay modal
-        function initiateRazorpayPayment(order) {
-            const cartData = JSON.parse(localStorage.getItem('travelCart'));
-            const firstName = document.getElementById('first-name').value;
-            const lastName = document.getElementById('last-name').value;
-            const email = document.getElementById('email').value;
-            const mobile = document.getElementById('mobile').value;
-
-            const options = {
-                key: 'rzp_test_7m2jpATTXnOo2o', // Your public Key ID
-                amount: order.amount,
-                currency: order.currency,
-                name: 'GoToGo Travel Solutions',
-                description: cartData.packageName || cartData.optionTitle,
-                image: './assets/gotogo final logos/g2g shuttle.png',
-                order_id: order.id,
-                handler: function (response) {
-                    verifyPayment(response);
-                },
-                prefill: {
-                    name: `${firstName} ${lastName}`,
-                    email: email,
-                    contact: mobile
-                },
-                notes: {
-                    address: document.getElementById('hotel-address').value
-                },
-                theme: {
-                    color: '#f4be30'
-                }
-            };
-            const rzp1 = new Razorpay(options);
-            rzp1.on('payment.failed', function (response) {
-                alert("Payment failed. Reason: " + response.error.description);
-                // --- FIX: Re-enable the button if the user closes the modal or payment fails ---
-                bookNowBtn.disabled = false;
-            });
-            rzp1.open();
-        }
-
-        // This function verifies the payment with your backend
-// Replace the old verifyPayment function in your HTML file's script
-// Replace the old verifyPayment function in your HTML file's script
-
-
-async function verifyPayment(paymentResponse) {
-    try {
-        // Gather all the necessary data
-        // --- SHOW THE LOADING OVERLAY ---
-        loadingOverlay.style.display = 'flex';
-
-        const cartData = JSON.parse(localStorage.getItem('travelCart'));
-        const billingDetails = {
-            firstName: document.getElementById('first-name').value,
-            lastName: document.getElementById('last-name').value,
-            email: document.getElementById('email').value,
-            mobile: document.getElementById('mobile').value,
-            hotelName: document.getElementById('hotel-name').value,
-            hotelAddress: document.getElementById('hotel-address').value,
-            tourDate: document.getElementById('tour-date').value,
-            additionalInfo: document.getElementById('additional-info').value
-        };
-
-        // --- MODIFICATION: Gather traveler names and ages ---
-        const travelersDetails = [];
-        for (let i = 1; i <= cartData.adults; i++) {
-            travelersDetails.push({
-                type: 'Adult',
-                name: document.getElementById(`adult-name-${i}`).value || 'N/A',
-                age: document.getElementById(`adult-age-${i}`).value || 'N/A'
-            });
-        }
-        for (let i = 1; i <= cartData.children; i++) {
-            travelersDetails.push({
-                type: 'Child',
-                name: document.getElementById(`child-name-${i}`).value || 'N/A',
-                age: document.getElementById(`child-age-${i}`).value || 'N/A'
-            });
-        }
-        // --- END MODIFICATION ---
-
-        // Combine all data into one object to send to the backend
-        const postData = {
-            ...paymentResponse,
-            cart: cartData,
-            billing: billingDetails,
-            travelers: travelersDetails // Add travelers to the payload
-        };
-
-        const response = await fetch('https://paymentgatewayforshuttletoagra.onrender.com/verify-payment', { // Use your actual server URL
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(postData),
-        });
-
-        const result = await response.json();
-
-        if (result.success) {
-          loadingOverlay.style.display = 'none';
-            toggleOverlay(); 
-            // --- THIS IS THE NEW LINE ---
-            localStorage.removeItem('travelCart');
-            // window.location.href = 'cart.html';
-        } else {
-            alert('Payment verification failed. Please contact support.');
-        }
-    } catch (error) {
-        console.error("Verification Error:", error);
-        alert('Could not verify payment. Please contact support.');
-    }
-}        
-
-
-// Main event listener for the "Book Now" button
-
-
-
-// The main event listener for the "Book Now" button was COMPLETELY REPLACED with a new one
-// that first validates, and only then proceeds to payment.
-
-        bookNowBtn.addEventListener('click', async () => {
-            if (bookNowBtn.disabled) return;
-
-            // --- FIX: Disable the button immediately on click ---
-    bookNowBtn.disabled = true;
-
-            const paymentMethod = document.querySelector('input[name="payment-method"]:checked').value;
-            const loadingOverlay = document.getElementById('loadingOverlay');
-
-            if (paymentMethod === 'razorpay') {
-                const totalInr = Math.round(cartData.totalPrice * INR_RATE);
-                const totalInPaisa = totalInr * 100;
-
-                try {
-                    const response = await fetch('https://paymentgatewayforshuttletoagra.onrender.com/create-order', {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({
-                            amount: totalInPaisa,
-                            currency: 'INR',
-                            receipt: `receipt_#${Date.now()}`
-                        }),
-                    });
-                    if (!response.ok) throw new Error('Failed to create order');
-                    const order = await response.json();
-                    initiateRazorpayPayment(order);
-                } catch (error) {
-                    console.error("Payment Error:", error);
-                    alert('Could not initiate payment. Please try again.');
-                     // --- FIX: Re-enable the button if creating the order fails ---
+          const rzp1 = new Razorpay(options);
+          
+          rzp1.on("payment.failed", function (response) {
+            alert("Payment failed: " + response.error.description);
+            // Agar payment fail ho jaye, to bhi overlay hatao
+            document.getElementById("loadingOverlay").style.display = "none";
+            
             bookNowBtn.disabled = false;
-                }
-            } else if (paymentMethod === 'cash') {
-                 // --- MODIFICATION: This part now handles the cash booking ---
-        loadingOverlay.style.display = 'flex';
-        try {
-            // Gather all the necessary data
-            const cartData = JSON.parse(localStorage.getItem('travelCart'));
-            const billingDetails = {
-                firstName: document.getElementById('first-name').value,
-                lastName: document.getElementById('last-name').value,
-                email: document.getElementById('email').value,
-                mobile: document.getElementById('mobile').value,
-                hotelName: document.getElementById('hotel-name').value,
-                hotelAddress: document.getElementById('hotel-address').value,
-                tourDate: document.getElementById('tour-date').value,
-                additionalInfo: document.getElementById('additional-info').value
-            };
-            const travelersDetails = [];
-            for (let i = 1; i <= cartData.adults; i++) { travelersDetails.push({ type: 'Adult', name: document.getElementById(`adult-name-${i}`).value || 'N/A', age: document.getElementById(`adult-age-${i}`).value || 'N/A'}); }
-            for (let i = 1; i <= cartData.children; i++) { travelersDetails.push({ type: 'Child', name: document.getElementById(`child-name-${i}`).value || 'N/A', age: document.getElementById(`child-age-${i}`).value || 'N/A' }); }
-
-            const postData = {
-                cart: cartData,
-                billing: billingDetails,
-                travelers: travelersDetails
-            };
-
-            const response = await fetch('https://paymentgatewayforshuttletoagra.onrender.com/book-cash', { // Call the new route
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(postData),
-            });
-
-            const result = await response.json();
-
-            if (result.success) {
-                localStorage.removeItem('travelCart');
-                toggleOverlay(); // Show the celebration pop-up
-            } else {
-                alert('Cash booking failed. Please try again.');
-            }
-
-        } catch (error) {
-            console.error("Cash Booking Error:", error);
-            alert('An error occurred. Please try again.');
-            // Re-enable button if cash booking fails
-            bookNowBtn.disabled = false; 
-
-        } finally {
-            loadingOverlay.style.display = 'none';
+            bookNowBtn.textContent = "Book Now";
+          });
+          
+          rzp1.open();
         }
-            }
+
+        
+        
+        async function verifyPayment(paymentResponse, ticketID, travelersData) {
+           loadingOverlay.style.display = "flex";
+           loadingOverlay.querySelector('p').textContent = "Confirming your booking...";
+           try {
+               const billingDetails = {
+                   firstName: document.getElementById("first-name").value,
+                   lastName: document.getElementById("last-name").value,
+                   email: document.getElementById("email").value,
+                   mobile: document.getElementById("mobile").value,
+                   hotelName: document.getElementById("hotel-name").value,
+                   hotelAddress: document.getElementById("hotel-address").value,
+                   tourDate: document.getElementById("tour-date").value,
+                   additionalInfo: document.getElementById("additional-info").value,
+               };
+
+               const postData = {
+                   ...paymentResponse,
+                   cart: cartData,
+                   billing: billingDetails,
+                   travelers: travelersData, 
+                   ticketNumber: ticketID,
+               };
+
+               const response = await fetch("https://paymentgatewayforshuttletoagra.onrender.com/verify-payment", {
+                   method: "POST",
+                   headers: { "Content-Type": "application/json" },
+                   body: JSON.stringify(postData),
+               });
+               const result = await response.json();
+
+               if (result.success) {
+                   const finalBookingData = {
+                       ticketNumber: ticketID,
+                       cart: cartData,
+                       billing: billingDetails,
+                       travelers: travelersData,
+                       paymentMethod: "razorpay",
+                       amountPaid: result.amount || cartData.totalPrice,
+                   };
+                   saveBookingSession(finalBookingData);
+                   localStorage.removeItem("travelCart");
+                   toggleOverlay();
+               } else {
+                   alert("Payment verification failed.");
+               }
+           } catch (error) {
+               console.error("Verification Error:", error);
+               alert("Could not verify payment.");
+           } finally {
+               loadingOverlay.style.display = "none";
+           }
+        }
+
+        // --- BOOK NOW CLICK LISTENER ---
+        bookNowBtn.addEventListener("click", async () => {
+           // 1. Validation
+           const requiredBilling = [...billingForm.querySelectorAll("input[required], textarea[required], select[required]")];
+           const requiredTravelerFields = [
+             ...document.querySelectorAll('[id^="adult-name-"]'),
+             ...document.querySelectorAll('[id^="adult-age-"]'),
+             ...document.querySelectorAll('[id^="adult-passport-"]'),
+             ...document.querySelectorAll('[id^="adult-file-"]'),
+             ...document.querySelectorAll('[id^="child-name-"]'),
+             ...document.querySelectorAll('[id^="child-age-"]'),
+           ].filter(Boolean);
+           const termsCheckbox = document.getElementById("terms");
+           const allRequiredFields = [...requiredBilling, ...requiredTravelerFields, termsCheckbox];
+
+           allRequiredFields.forEach((field) => field.classList.remove("form-error"));
+           let firstErrorField = null;
+           for (const field of allRequiredFields) {
+               if (!field) continue;
+               const isCheckbox = field.type === "checkbox";
+               const isHidden = field.offsetParent === null;
+               if (isHidden) continue;
+               
+               const isEmpty = field.type === 'file' ? field.files.length === 0 : !String(field.value || "").trim();
+               if ((isCheckbox && !field.checked) || (!isCheckbox && isEmpty)) {
+                   firstErrorField = field;
+                   break;
+               }
+           }
+           if (firstErrorField) {
+               firstErrorField.classList.add("form-error");
+               firstErrorField.scrollIntoView({ behavior: "smooth", block: "center" });
+               firstErrorField.focus();
+               return;
+           }
+
+           // 2. Processing Data & Files
+           bookNowBtn.disabled = true;
+           bookNowBtn.textContent = "Processing Files...";
+           loadingOverlay.style.display = "flex";
+           loadingOverlay.querySelector('p').textContent = "Securely processing documents...";
+
+           try {
+               const adultTravelersData = [];
+               for (let i = 1; i <= cartData.adults; i++) {
+                   const name = document.getElementById(`adult-name-${i}`).value;
+                   const age = document.getElementById(`adult-age-${i}`).value;
+                   const passportNo = document.getElementById(`adult-passport-${i}`).value;
+                   const fileInput = document.getElementById(`adult-file-${i}`);
+                   let fileBase64 = null;
+                   let fileExt = null;
+                   if (fileInput.files.length > 0) {
+                       // PURANA CODE: fileBase64 = await toBase64(fileInput.files[0]);
+// NAYA CODE:
+try {
+    fileBase64 = await processFile(fileInput.files[0]);
+    // Force extension to jpg for images because we converted them
+    fileExt = fileInput.files[0].type === 'application/pdf' ? 'pdf' : 'jpg';
+} catch (err) {
+    alert(`Error with Adult #${i} file: ${err.message}`);
+    bookNowBtn.disabled = false;
+    loadingOverlay.style.display = "none";
+    return; // Stop the process
+} }
+                   
+                   adultTravelersData.push({
+                       type: "Adult",
+                       name: name,
+                       age: age,
+                       passport: passportNo,
+                       passportFileBase64: fileBase64, 
+                       fileExtension: fileExt 
+                   });
+               }
+
+               const childTravelersData = [];
+               for (let i = 1; i <= cartData.children; i++) {
+                    childTravelersData.push({
+                       type: "Child",
+                       name: document.getElementById(`child-name-${i}`).value || "N/A",
+                       age: document.getElementById(`child-age-${i}`).value || "N/A",
+                       passport: "N/A"
+                   });
+               }
+
+               const finalTravelersList = [...adultTravelersData, ...childTravelersData];
+               
+               // 3. Send to Server (Payment)
+               const paymentMethod = document.querySelector('input[name="payment-method"]:checked').value;
+
+               if (paymentMethod === "razorpay") {
+                   loadingOverlay.querySelector('p').textContent = "Initiating Payment...";
+                  //  const totalInr = Math.round(cartData.totalPrice * INR_RATE);
+                  //  const totalInPaisa = totalInr * 100;
+                  const totalInPaisa = Math.round(cartData.totalPrice * INR_RATE * 100);
+                   const response = await fetch("https://paymentgatewayforshuttletoagra.onrender.com/create-order", {
+                       method: "POST",
+                       headers: { "Content-Type": "application/json" },
+                       body: JSON.stringify({
+                           amount: totalInPaisa,
+                           currency: "INR",
+                           receipt: `receipt_#${Date.now()}`
+                       }),
+                   });
+                   if (!response.ok) throw new Error("Failed to create order");
+                   const order = await response.json();
+                   initiateRazorpayPayment(order, finalTravelersList); 
+
+               } else if (paymentMethod === "cash") {
+                   const ticketID = generateTicketNumber();
+                   const billingDetails = {
+                       firstName: document.getElementById("first-name").value,
+                       lastName: document.getElementById("last-name").value,
+                       email: document.getElementById("email").value,
+                       mobile: document.getElementById("mobile").value,
+                       hotelName: document.getElementById("hotel-name").value,
+                       hotelAddress: document.getElementById("hotel-address").value,
+                       tourDate: document.getElementById("tour-date").value,
+                       additionalInfo: document.getElementById("additional-info").value,
+                   };
+                   const postData = {
+                       cart: cartData,
+                       billing: billingDetails,
+                       travelers: finalTravelersList, 
+                       ticketNumber: ticketID,
+                   };
+                   const response = await fetch("https://paymentgatewayforshuttletoagra.onrender.com/book-cash", {
+                       method: "POST",
+                       headers: { "Content-Type": "application/json" },
+                       body: JSON.stringify(postData),
+                   });
+                   const result = await response.json();
+                   if (result.success) {
+                       const cleanTravelers = finalTravelersList.map(t => ({...t, passportFileBase64: undefined}));
+                       const finalBookingData = {
+                           ticketNumber: ticketID,
+                           cart: cartData,
+                           billing: billingDetails,
+                           travelers: cleanTravelers,
+                           paymentMethod: "cash",
+                           amountPaid: cartData.totalPrice,
+                       };
+                       saveBookingSession(finalBookingData);
+                       localStorage.removeItem("travelCart");
+                       toggleOverlay();
+                   } else {
+                       alert(`Cash booking failed: ${result.message}`);
+                   }
+               }
+           } catch (error) {
+               console.error("Error:", error);
+               alert("Error: " + error.message);
+               bookNowBtn.disabled = false;
+               bookNowBtn.textContent = "Book Now";
+           } finally {
+               if(document.querySelector('input[name="payment-method"]:checked').value === 'cash' || bookNowBtn.disabled === false) {
+                   loadingOverlay.style.display = "none";
+               }
+           }
         });
-    });
 
-    // Get the mobile input field
-const mobileInput = document.getElementById('mobile');
-
-// Add a listener to automatically remove any non-numeric characters as the user types
-mobileInput.addEventListener('input', function(event) {
-    this.value = this.value.replace(/[^0-9]/g, '');
-});
-</script>
-
-</body>
+        // Mobile Formatting
+        const mobileInput = document.getElementById("mobile");
+        mobileInput.addEventListener("input", function (event) {
+          this.value = this.value.replace(/[^0-9]/g, "");
+        });
+      });
+    </script>
+  </body>
 </html>
-

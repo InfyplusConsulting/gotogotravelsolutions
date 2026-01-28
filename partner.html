@@ -406,5 +406,20 @@
       src="https://kit.fontawesome.com/4097fc1260.js"
       crossorigin="anonymous"
     ></script>
+    <script>
+  // 1. Call Tracking
+  document.querySelectorAll('.call-track').forEach(btn => {
+    btn.addEventListener('click', () => {
+      gtag('event', 'phone_call_click', { 'event_category': 'Contact' });
+    });
+  });
+
+  // 2. WhatsApp Tracking
+  document.querySelectorAll('.whatsapp-track').forEach(btn => {
+    btn.addEventListener('click', () => {
+      gtag('event', 'whatsapp_click', { 'event_category': 'Contact' });
+    });
+  });
+</script>
 </body>
 </html>

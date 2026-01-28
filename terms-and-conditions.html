@@ -243,5 +243,20 @@
         © 2025 All Rights Reserved by GoToGo Travel Solutions LLP
     </div>
   </div>
+  <script>
+  // 1. Call Tracking
+  document.querySelectorAll('.call-track').forEach(btn => {
+    btn.addEventListener('click', () => {
+      gtag('event', 'phone_call_click', { 'event_category': 'Contact' });
+    });
+  });
+
+  // 2. WhatsApp Tracking
+  document.querySelectorAll('.whatsapp-track').forEach(btn => {
+    btn.addEventListener('click', () => {
+      gtag('event', 'whatsapp_click', { 'event_category': 'Contact' });
+    });
+  });
+</script>
 </body>
 </html>

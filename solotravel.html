@@ -532,7 +532,7 @@
     <div style="display: flex; flex-direction: row; align-items: center; justify-content: space-between; gap: 1.5rem;" class="footer-css">
       
       <div style="display: flex; flex-direction: column; align-items: flex-start; text-align: left; gap: 0.25rem;" class="footer-contact-css">
-        <a href="tel:+917065650650" style="color: inherit; text-decoration: none; transition: color 0.15s;">
+        <a href="tel:+917065650650" class="call-track" style="color: inherit; text-decoration: none; transition: color 0.15s;">
           📞 +91 7065 650 650
         </a>
         <a href="mailto:care@gotogotravelsolutions.com" style="color: inherit; text-decoration: none; transition: color 0.15s;">
@@ -577,10 +577,10 @@
   </div>
 </footer>
         <div class="side-contact">
-        <a href="tel:+917065650650" class="icon call">
+        <a href="tel:+917065650650" class="icon call call-track">
             <i class="fa-solid fa-phone"></i>
         </a>
-        <a href="https://wa.me/917065650650" class="icon whatsapp" target="_blank">
+        <a href="https://wa.me/917065650650" class="icon whatsapp whatsapp-track" target="_blank">
             <i class="fa-brands fa-whatsapp"></i>
         </a>
     </div>
@@ -804,6 +804,22 @@
         updateTravelerSummary();
         updateMainPrice();
     });
+</script>
+
+<script>
+  // 1. Call Tracking
+  document.querySelectorAll('.call-track').forEach(btn => {
+    btn.addEventListener('click', () => {
+      gtag('event', 'phone_call_click', { 'event_category': 'Contact' });
+    });
+  });
+
+  // 2. WhatsApp Tracking
+  document.querySelectorAll('.whatsapp-track').forEach(btn => {
+    btn.addEventListener('click', () => {
+      gtag('event', 'whatsapp_click', { 'event_category': 'Contact' });
+    });
+  });
 </script>
 
 </body>

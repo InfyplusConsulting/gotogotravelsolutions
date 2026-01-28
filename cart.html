@@ -962,6 +962,7 @@ width: 100%;
                 text-decoration: none;
                 transition: color 0.15s;
               "
+              class="call-track"
             >
               📞 +91 7065 650 650
             </a>
@@ -1062,6 +1063,7 @@ width: 100%;
                   color: inherit;
                   text-decoration: none;
                 "
+                class="whatsapp-track"
               >
                 <img
                   src="https://cdn-icons-png.flaticon.com/512/3670/3670051.png"
@@ -2815,6 +2817,21 @@ try {
         });
       });
     </script>
+    <script>
+  // 1. Call Tracking
+  document.querySelectorAll('.call-track').forEach(btn => {
+    btn.addEventListener('click', () => {
+      gtag('event', 'phone_call_click', { 'event_category': 'Contact' });
+    });
+  });
+
+  // 2. WhatsApp Tracking
+  document.querySelectorAll('.whatsapp-track').forEach(btn => {
+    btn.addEventListener('click', () => {
+      gtag('event', 'whatsapp_click', { 'event_category': 'Contact' });
+    });
+  });
+</script>
     
   </body>
 </html>
