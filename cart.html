@@ -1980,7 +1980,7 @@
 
       //     try {
       //         // --- Step A: DB Fetch ---
-      //         const response = await fetch(`https://paymentgatewayforshuttletoagra.onrender.com/api/ticket/${ticketId}`);
+      //         const response = await fetch(`https://paymentgatewayforgotogomerger.onrender.com/api/ticket/${ticketId}`);
       //         const data = await response.json();
 
       //         if (!data.success) {
@@ -2093,7 +2093,7 @@
         try {
           // --- Step A: DB Fetch ---
           const response = await fetch(
-            `https://paymentgatewayforshuttletoagra.onrender.com/api/ticket/${ticketId}`,
+            `https://paymentgatewayforgotogomerger.onrender.com/api/airport/get-shuttle-ticket/${ticketId}`,
           );
           const data = await response.json();
 
@@ -2192,7 +2192,7 @@
           payElem.className = `text-lg font-bold uppercase ${payColor}`;
         }
 
-        setText("pdf-amount", `Rs. ${booking.amountPaid}`);
+        setText("pdf-amount", `USD. ${booking.amountPaid}`);
 
         // 5. पैसेंजर लिस्ट टेबल (डायनामिक)
         const tbody = document.getElementById("pdf-traveler-list");
@@ -2265,7 +2265,7 @@
           async function checkTicketAvailability() {
             try {
               const response = await fetch(
-                `https://paymentgatewayforshuttletoagra.onrender.com/api/ticket/${ticketId}`,
+                `https://paymentgatewayforgotogomerger.onrender.com/api/agra/ticket/${ticketId}`,
               );
               const data = await response.json();
 
@@ -2353,7 +2353,7 @@
         const pingServer = async () => {
           try {
             await fetch(
-              "https://paymentgatewayforshuttletoagra.onrender.com/ping",
+              "https://paymentgatewayforgotogomerger.onrender.com/ping",
             );
           } catch (error) {
             console.error("Failed to ping server:", error);
@@ -2805,7 +2805,7 @@
             };
 
             const response = await fetch(
-              "https://paymentgatewayforshuttletoagra.onrender.com/verify-payment",
+              "https://paymentgatewayforgotogomerger.onrender.com/api/agra/verify", //https://paymentgatewayforgotogomerger.onrender.com
               {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
@@ -3040,7 +3040,7 @@
                 cartData.totalPrice * INR_RATE * 100,
               );
               const response = await fetch(
-                "https://paymentgatewayforshuttletoagra.onrender.com/create-order",
+                "https://paymentgatewayforgotogomerger.onrender.com/api/agra/create-order",
                 {
                   method: "POST",
                   headers: { "Content-Type": "application/json" },
@@ -3074,7 +3074,7 @@
                 ticketNumber: ticketID,
               };
               const response = await fetch(
-                "https://paymentgatewayforshuttletoagra.onrender.com/book-cash",
+                "https://paymentgatewayforgotogomerger.onrender.com/api/agra/book-cash",
                 {
                   method: "POST",
                   headers: { "Content-Type": "application/json" },

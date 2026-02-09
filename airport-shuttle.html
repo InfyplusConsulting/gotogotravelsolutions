@@ -1722,7 +1722,7 @@
     const pingServer = async () => {
         try {
             // IMPORTANT: Replace this URL with your actual deployed Onrender server URL
-            await fetch('https://paymentgatewayforairportshuttle.onrender.com/ping'); //https://paymentgatewayforairportshuttle.onrender.com
+            await fetch('https://paymentgatewayforgotogomerger.onrender.com/ping'); //https://paymentgatewayforgotogomerger.onrender.com
             console.log('Ping sent to server to wake it up.');
         } catch (error) {
             // We don't show an alert here because it's a background task.
@@ -1837,7 +1837,7 @@
 
           try {
             const orderRes = await fetch(
-              "https://paymentgatewayforairportshuttle.onrender.com/api/create-order",
+              "https://paymentgatewayforgotogomerger.onrender.com/api/airport/create-order",
               {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
@@ -1880,7 +1880,7 @@
 
                 try {
                   const verifyRes = await fetch(
-                    "https://paymentgatewayforairportshuttle.onrender.com/verify",
+                    "https://paymentgatewayforgotogomerger.onrender.com/api/airport/verify",
                     {
                       method: "POST",
                       headers: { "Content-Type": "application/json" },
