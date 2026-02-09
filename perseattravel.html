@@ -481,7 +481,7 @@
                 <!-- Options Container - Hidden by default -->
                 <div id="options-container" class="hidden mt-6 space-y-4">
     
-    <div class="option-box border rounded-lg p-4 cursor-pointer hover:border-[#f4be30] transition selected" onclick="selectOption(this)" data-price-per-adult="1.75">
+    <div class="option-box border rounded-lg p-4 cursor-pointer hover:border-[#f4be30] transition selected" onclick="selectOption(this)" data-price-per-adult="175">
         <div class="flex justify-between items-center">
             <p class="font-semibold">Option 1 : Car + Guide + Entrance + Lunch</p>
             <p class="text-xl font-bold text-gray-800 price-display">$ 175</p>
@@ -497,7 +497,7 @@
         </div>
     </div>
 
-    <div class="option-box border rounded-lg p-4 cursor-pointer hover:border-[#f4be30] transition" onclick="selectOption(this)" data-price-per-adult="1.50">
+    <div class="option-box border rounded-lg p-4 cursor-pointer hover:border-[#f4be30] transition" onclick="selectOption(this)" data-price-per-adult="150">
         <div class="flex justify-between items-center">
             <p class="font-semibold">Option 2 : Car + Guide + Entrance</p>
             <p class="text-xl font-bold text-gray-800 price-display">$ 150</p>
@@ -513,7 +513,7 @@
         </div>
     </div>
 
-    <div class="option-box border rounded-lg p-4 cursor-pointer hover:border-[#f4be30] transition" onclick="selectOption(this)" data-price-per-adult="1.20">
+    <div class="option-box border rounded-lg p-4 cursor-pointer hover:border-[#f4be30] transition" onclick="selectOption(this)" data-price-per-adult="120">
         <div class="flex justify-between items-center">
             <p class="font-semibold">Option 3 : Car + Guide</p>
             <p class="text-xl font-bold text-gray-800 price-display">$ 120</p>
@@ -529,7 +529,7 @@
         </div>
     </div>
 
-    <div class="option-box border rounded-lg p-4 cursor-pointer bg-white shadow-sm hover:border-[#f4be30]" onclick="selectOption(this)" data-price-per-adult="1.00">
+    <div class="option-box border rounded-lg p-4 cursor-pointer bg-white shadow-sm hover:border-[#f4be30]" onclick="selectOption(this)" data-price-per-adult="100">
         <div class="flex justify-between items-start">
             <div>
                 <p class="font-semibold">Option 4 : Car</p>
@@ -753,7 +753,7 @@
     function updateMainPrice() {
         const adultCount = parseInt(document.getElementById('adult-count').value, 10);
         const childCount = parseInt(document.getElementById('child-count').value, 10);
-        const OPTION_1_BASE = 1.75; //175
+        const OPTION_1_BASE = 175; //175
         // const adultTotal = calculateTotalForGroup(adultCount, OPTION_1_BASE);
         // const childTotal = calculateTotalForGroup(childCount, BASE_CHILD_PRICE);
         // document.getElementById('main-price-display').textContent = `$${adultTotal + childTotal}`;
@@ -803,7 +803,7 @@
         
         document.querySelectorAll('.option-box').forEach(box => {
             // const pricePerAdultBase = parseInt(box.dataset.pricePerAdult, 10);
-            const pricePerAdultBase = parseFloat(box.dataset.pricePerAdult); // preserve decimals like 1.75
+            const pricePerAdultBase = parseFloat(box.dataset.pricePerAdult); // preserve decimals like 175
       
             if (isNaN(pricePerAdultBase)) return;
 

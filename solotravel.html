@@ -469,7 +469,7 @@
 
                 <!-- Options Container - Hidden by default -->
                 <div id="options-container" class="hidden mt-6 space-y-4">
-    <div class="option-box border rounded-lg p-4 cursor-pointer hover:border-[#f4be30] transition selected" onclick="selectOption(this)" data-price-per-adult="2.50">
+    <div class="option-box border rounded-lg p-4 cursor-pointer hover:border-[#f4be30] transition selected" onclick="selectOption(this)" data-price-per-adult="250">
       <!-- //250 -->
         <div class="flex justify-between items-center">
             <p class="font-semibold">Option 1 : Car + Guide + Entrance + Lunch</p>
@@ -484,7 +484,7 @@
           </div>
     </div>
 
-    <div class="option-box border rounded-lg p-4 cursor-pointer hover:border-[#f4be30] transition" onclick="selectOption(this)" data-price-per-adult="2.25">
+    <div class="option-box border rounded-lg p-4 cursor-pointer hover:border-[#f4be30] transition" onclick="selectOption(this)" data-price-per-adult="225">
       <!-- 225 -->
         <div class="flex justify-between items-center">
             <p class="font-semibold">Option 2 : Car + Guide + Entrance</p>
@@ -499,7 +499,7 @@
           </div>
     </div>
 
-    <div class="option-box border rounded-lg p-4 cursor-pointer hover:border-[#f4be30] transition" onclick="selectOption(this)" data-price-per-adult="1.95">
+    <div class="option-box border rounded-lg p-4 cursor-pointer hover:border-[#f4be30] transition" onclick="selectOption(this)" data-price-per-adult="195">
       <!-- //195 -->
         <div class="flex justify-between items-center">
             <p class="font-semibold">Option 3 : Car + Guide</p>
@@ -514,7 +514,7 @@
           </div>
     </div>
 
-    <div class="option-box border rounded-lg p-4 cursor-pointer hover:border-[#f4be30] transition" onclick="selectOption(this)" data-price-per-adult="1.75">
+    <div class="option-box border rounded-lg p-4 cursor-pointer hover:border-[#f4be30] transition" onclick="selectOption(this)" data-price-per-adult="175">
       <!-- //175 -->
         <div class="flex justify-between items-start">
             <div>
@@ -700,7 +700,7 @@
         const childCount = parseInt(document.getElementById('child-count').value, 10);
         
         // Use Option 4 (Car Only, $175) for the preview price at the top
-        const total = calculateTotal(adultCount, childCount, 1.75);
+        const total = calculateTotal(adultCount, childCount, 175);
         //175
         document.getElementById('main-price-display').textContent = `$${total}`;
     }
