@@ -1692,19 +1692,19 @@
 
         let price = 0;
         if (serviceType === "Shuttle") {
-          price = names.length * 1;
+          price = names.length * 10;
         } else if (serviceType === "Sedan") {
           if (names.length > 3) {
             showSedanModal();
             return;
           }
-          price = 4;
+          price = 40;
         } else if (serviceType === "SUV") {
           if (names.length > 5) {
             showCallModal();
             return;
           }
-          price = 5;
+          price = 50;
         }
 
         const checkoutElement = document.getElementById("checkout");
@@ -1812,13 +1812,13 @@
             return alert("Pickup date cannot be in the past.");
 
           let price = 0;
-          if (serviceType === "Shuttle") price = 1 * names.length;
+          if (serviceType === "Shuttle") price = 10 * names.length;
           else if (serviceType === "Sedan") {
             if (names.length > 3) return alert("Max 3 passengers for Sedan.");
-            price = 4;
+            price = 40;
           } else if (serviceType === "SUV") {
             if (names.length > 5) return alert("Max 5 passengers for SUV.");
-            price = 5;
+            price = 50;
           }
 
           bookingData = {
