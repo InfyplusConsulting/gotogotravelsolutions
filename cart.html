@@ -1329,7 +1329,7 @@
         <div class="text-right">
           <p class="text-sm text-gray-500">Total Amount</p>
           <p class="text-xl font-bold text-gray-800" id="pdf-amount">
-            Rs. 0.00
+            USD. 0.00
           </p>
         </div>
       </div>
@@ -1760,7 +1760,7 @@
           (parseInt(data.cart.children) || 0);
         document.getElementById("pdf-total-pax").innerText = totalPax;
         document.getElementById("pdf-amount").innerText =
-          "Rs. " + (data.amountPaid || data.cart.totalPrice);
+          "USD. " + (data.amountPaid || data.cart.totalPrice);
         document.getElementById("pdf-payment-status").innerText =
           data.paymentMethod === "cash" ? "PAY ON ARRIVAL" : "PAID ONLINE";
 
@@ -2552,7 +2552,7 @@
            </div>
            <div class="flex justify-between items-center font-semibold text-md bg-gray-100 p-2 rounded-md mt-2">
                <p>Amount In (INR)</p>
-               <p>Rs. ${(cartData.totalPrice * INR_RATE).toLocaleString("en-IN")}/-</p>
+               <p>Rs. <span id="inr-price">Calculating...</span>/-</p>
            </div>
         `;
         cartSummaryContainer.innerHTML = summaryHTML;
@@ -3142,6 +3142,43 @@
         });
       });
     </script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    // 1. LocalStorage se 'travelCart' nikaalo
+    const storedCart = localStorage.getItem("travelCart");
+
+    if (storedCart) {
+        try {
+            // String ko Object mein badlo
+            const cartData = JSON.parse(storedCart);
+            
+            // Check karo ki totalPrice maujood hai ya nahi
+            if (cartData && cartData.totalPrice) {
+                const usdAmount = cartData.totalPrice; // Ye value $ mein hai (e.g. 50)
+
+                // 2. API Call karke INR rate mangwao
+                fetch(`https://api.frankfurter.app/latest?amount=${usdAmount}&from=USD&to=INR`)
+                    .then(response => response.json())
+                    .then(data => {
+                        // Rate mil gaya!
+                        const inrValue = Math.round(data.rates.INR); // Round off kiya (e.g. 4312.5 -> 4313)
+                        
+                        // 3. Screen par update karo
+                        document.getElementById("inr-price").innerText = inrValue.toLocaleString("en-IN");
+                    })
+                    .catch(error => {
+                        console.error("Currency API Error:", error);
+                        document.getElementById("inr-price").innerText = "---";
+                    });
+            }
+        } catch (e) {
+            console.error("Error reading travelCart:", e);
+        }
+    }
+});
+</script>
+
     <script>
       // 1. Call Tracking
       document.querySelectorAll(".call-track").forEach((btn) => {
