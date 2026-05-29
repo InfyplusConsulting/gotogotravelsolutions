@@ -383,13 +383,19 @@ display: inline-block;
     display: grid;
     grid-template-columns: 4fr 5fr; /* Makes the right column slightly wider */
     align-items: center;
-    gap: 60px;
+    gap: 40px;
 }
 
 /* --- Image Column --- */
+.image-column {
+    padding-left: 30px; /* Moves the image away from the left edge */
+}
+
 .image-column img {
     max-width: 100%;
     height: auto;
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
 }
 
 /* --- Info Column Typography --- */
@@ -427,21 +433,38 @@ display: inline-block;
     margin-bottom: 15px;
 }
 
-.booking-steps p {
+.steps-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.steps-list li {
     font-size: 0.95rem;
     color: #34495e;
     line-height: 1.6;
-    margin-bottom: 8px;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
 }
 
-
-
+.steps-list li i {
+    color: #f4be30;
+    margin-top: 4px;
+    width: 20px;
+    text-align: center;
+}
 
 /* --- Responsive Design --- */
 @media (max-width: 992px) {
     .tour-info-section .container {
         grid-template-columns: 1fr; /* Stack columns */
         gap: 40px;
+    }
+    
+    .image-column {
+        padding-left: 0; /* Resets padding when stacked on mobile */
     }
 
     .tour-info-section::before,
