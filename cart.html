@@ -3145,31 +3145,42 @@
 
 <script>
 document.addEventListener("DOMContentLoaded", function() {
-    // 1. LocalStorage se 'travelCart' nikaalo
     const storedCart = localStorage.getItem("travelCart");
 
     if (storedCart) {
         try {
-            // String ko Object mein badlo
             const cartData = JSON.parse(storedCart);
             
-            // Check karo ki totalPrice maujood hai ya nahi
             if (cartData && cartData.totalPrice) {
-                const usdAmount = cartData.totalPrice; // Ye value $ mein hai (e.g. 50)
+                const cleanPrice = cartData.totalPrice.toString().replace(/[^0-9.]/g, '');
+                const usdAmount = parseFloat(cleanPrice); 
+                
+                const inrElement = document.getElementById("inr-price");
+                inrElement.innerText = "Loading...";
 
-                // 2. API Call karke INR rate mangwao
-                fetch(`https://api.frankfurter.app/latest?amount=${usdAmount}&from=USD&to=INR`)
-                    .then(response => response.json())
+                const controller = new AbortController();
+                // Is baar CDN hai, toh bahut fast aayega, limit 3 second kar di hai safe side ke liye
+                const timeoutId = setTimeout(() => controller.abort(), 3000); 
+
+                // Naya URL (Fastest CDN based Currency API)
+                fetch("https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/usd.json", { signal: controller.signal })
+                    .then(response => {
+                        clearTimeout(timeoutId);
+                        if (!response.ok) throw new Error("API failed");
+                        return response.json();
+                    })
                     .then(data => {
-                        // Rate mil gaya!
-                        const inrValue = Math.round(data.rates.INR); // Round off kiya (e.g. 4312.5 -> 4313)
+                        // Is API ka data format thoda alag hai: data.usd.inr
+                        const usdToInrRate = data.usd.inr; 
                         
-                        // 3. Screen par update karo
-                        document.getElementById("inr-price").innerText = inrValue.toLocaleString("en-IN");
+                        const inrValue = Math.round(usdAmount * usdToInrRate);
+                        inrElement.innerText = inrValue.toLocaleString("en-IN");
                     })
                     .catch(error => {
-                        console.error("Currency API Error:", error);
-                        document.getElementById("inr-price").innerText = "---";
+                        console.warn("API slow/failed, jumping to fallback rate.");
+                        const backupRate = 83.5; 
+                        const fallbackValue = Math.round(usdAmount * backupRate);
+                        inrElement.innerText = fallbackValue.toLocaleString("en-IN") + " *";
                     });
             }
         } catch (e) {
